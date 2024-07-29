@@ -8,7 +8,7 @@
 
 
 id: org.termx.cda2fhir
-canonical: https://termx.org/org.termx.cda2fhir
+canonical: https://termx.org/cda2fhir
 url: https://termx.org/ImplementationGuide/org.termx.cda2fhir
 name: CDA2FHIR
 title: "CDA to FHIR transformations"
