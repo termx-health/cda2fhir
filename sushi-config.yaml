@@ -1,0 +1,11 @@
+id: cda
+canonical: http://terminology.hl7.ee/ImplementationGuide/cda
+name: CDA
+title: CDA
+status: draft
+version: 1.0.0
+fhirVersion: 5.0.0
+copyrightYear: 2024+
+releaseLabel: ballot
+publisher: 
+  name: hl7-ee
