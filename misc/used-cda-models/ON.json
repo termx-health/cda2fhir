@@ -1,0 +1,329 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "ON",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>A name for an organization. A sequence of name parts, such as given name or family name, prefix, suffix, etc. Examples for organization name values are &quot;Health Level Seven, Inc.&quot;, &quot;Hospital&quot;, etc. An organization name may be as simple as a character string or may consist of several person name parts, such as, &quot;Health Level 7&quot;, &quot;Inc.&quot;. ON differs from EN because certain person related name parts are not possible.</p>\n    </div>"
+  },
+  "extension" : [ {
+    "url" : "http://hl7.org/fhir/tools/StructureDefinition/logical-target",
+    "_valueBoolean" : {
+      "extension" : [ {
+        "url" : "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "valueCode" : "not-applicable"
+      } ]
+    }
+  }, {
+    "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-namespace",
+    "valueUri" : "urn:hl7-org:v3"
+  } ],
+  "url" : "http://hl7.org/cda/stds/core/StructureDefinition/ON",
+  "name" : "ON",
+  "title" : "ON: OrganizationName (V3 Data Type)",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2023-11-30T22:15:31+00:00",
+  "publisher" : "Health Level 7",
+  "contact" : [ {
+    "name" : "HL7 International - Structured Documents",
+    "telecom" : [ {
+      "system" : "url",
+      "value" : "http://www.hl7.org/Special/committees/structure"
+    }, {
+      "system" : "email",
+      "value" : "structdog@lists.HL7.org"
+    } ]
+  } ],
+  "description" : "A name for an organization. A sequence of name parts. Examples for organization name values are \"Health Level Seven, Inc.\", \"Hospital\", etc. An organization name may be as simple as a character string or may consist of several person name parts, such as, \"Health Level 7\", \"Inc.\". ON differs from EN because certain person related name parts are not possible.",
+  "fhirVersion" : "5.0.0",
+  "mapping" : [ {
+    "identity" : "rim",
+    "uri" : "http://hl7.org/v3",
+    "name" : "RIM Mapping"
+  } ],
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "http://hl7.org/cda/stds/core/StructureDefinition/ON",
+  "baseDefinition" : "http://hl7.org/cda/stds/core/StructureDefinition/EN",
+  "derivation" : "specialization",
+  "snapshot" : {
+    "element" : [ {
+      "id" : "ON",
+      "path" : "ON",
+      "short" : "Base for all types and resources",
+      "definition" : "A name for an organization. A sequence of name parts. Examples for organization name values are \"Health Level Seven, Inc.\", \"Hospital\", etc. An organization name may be as simple as a character string or may consist of several person name parts, such as, \"Health Level 7\", \"Inc.\". ON differs from EN because certain person related name parts are not possible.",
+      "min" : 1,
+      "max" : "*",
+      "base" : {
+        "path" : "Base",
+        "min" : 0,
+        "max" : "*"
+      },
+      "isModifier" : false,
+      "mapping" : [ {
+        "identity" : "rim",
+        "map" : "n/a"
+      } ]
+    }, {
+      "id" : "ON.nullFlavor",
+      "path" : "ON.nullFlavor",
+      "representation" : [ "xmlAttr" ],
+      "label" : "Exceptional Value Detail",
+      "definition" : "If a value is an exceptional value (NULL-value), this specifies in what way and why proper information is missing.",
+      "min" : 0,
+      "max" : "1",
+      "base" : {
+        "path" : "ANY.nullFlavor",
+        "min" : 0,
+        "max" : "1"
+      },
+      "type" : [ {
+        "code" : "code",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple" ]
+      } ],
+      "binding" : {
+        "strength" : "required",
+        "valueSet" : "http://hl7.org/cda/stds/core/ValueSet/CDANullFlavor"
+      }
+    }, {
+      "id" : "ON.use",
+      "path" : "ON.use",
+      "representation" : [ "xmlAttr" ],
+      "label" : "Use Code",
+      "definition" : "A set of codes advising a system or user which name in a set of like names to select for a given purpose. A name without specific use code might be a default name useful for any purpose, but a name with a specific use code would be preferred for that respective purpose",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.use",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "code",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple" ]
+      } ],
+      "binding" : {
+        "strength" : "required",
+        "valueSet" : "http://hl7.org/cda/stds/core/ValueSet/CDAEntityNameUse"
+      }
+    }, {
+      "id" : "ON.item",
+      "extension" : [ {
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/xml-choice-group",
+        "valueBoolean" : true
+      } ],
+      "path" : "ON.item",
+      "definition" : "A series of items that constitute the name.",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.item",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/fhir/StructureDefinition/Base"
+      } ],
+      "constraint" : [ {
+        "key" : "EN-1",
+        "severity" : "error",
+        "human" : "Can only have only one of the possible item elements in each choice",
+        "expression" : "(delimiter | family | given | prefix | suffix | xmlText).count() = 1",
+        "source" : "http://hl7.org/cda/stds/core/StructureDefinition/EN"
+      } ]
+    }, {
+      "id" : "ON.item.delimiter",
+      "path" : "ON.item.delimiter",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.item.delimiter",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "ON.item.prefix",
+      "path" : "ON.item.prefix",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.item.prefix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "ON.item.suffix",
+      "path" : "ON.item.suffix",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.item.suffix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "ON.xmlText",
+      "path" : "ON.xmlText",
+      "representation" : [ "xmlText" ],
+      "short" : "Allows for mixed text content",
+      "comment" : "This element is represented in XML as textual content. The actual name \"xmlText\" will not appear in a CDA instance.",
+      "min" : 0,
+      "max" : "1",
+      "base" : {
+        "path" : "EN.xmlText",
+        "min" : 0,
+        "max" : "1"
+      },
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/st-simple" ]
+      } ]
+    }, {
+      "id" : "ON.validTime",
+      "path" : "ON.validTime",
+      "label" : "Valid Time",
+      "definition" : "An interval of time specifying the time during which the name is or was used for the entity. This accomodates the fact that people change names for people, places and things.",
+      "min" : 0,
+      "max" : "1",
+      "base" : {
+        "path" : "EN.validTime",
+        "min" : 0,
+        "max" : "1"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS"
+      } ]
+    } ]
+  },
+  "differential" : {
+    "element" : [ {
+      "definition" : "A name for an organization. A sequence of name parts. Examples for organization name values are \"Health Level Seven, Inc.\", \"Hospital\", etc. An organization name may be as simple as a character string or may consist of several person name parts, such as, \"Health Level 7\", \"Inc.\". ON differs from EN because certain person related name parts are not possible.",
+      "id" : "ON",
+      "max" : "*",
+      "min" : 1,
+      "path" : "ON"
+    }, {
+      "base" : {
+        "path" : "EN.item.delimiter",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "ON.item.delimiter",
+      "max" : "*",
+      "min" : 0,
+      "path" : "ON.item.delimiter",
+      "type" : [ {
+        "code" : "ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.validTime",
+        "min" : 0,
+        "max" : "1"
+      },
+      "definition" : "An interval of time specifying the time during which the name is or was used for the entity. This accomodates the fact that people change names for people, places and things.",
+      "id" : "ON.validTime",
+      "label" : "Valid Time",
+      "max" : "1",
+      "min" : 0,
+      "path" : "ON.validTime",
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.xmlText",
+        "min" : 0,
+        "max" : "1"
+      },
+      "comment" : "This element is represented in XML as textual content. The actual name \"xmlText\" will not appear in a CDA instance.",
+      "id" : "ON.xmlText",
+      "max" : "1",
+      "min" : 0,
+      "path" : "ON.xmlText",
+      "representation" : [ "xmlText" ],
+      "short" : "Allows for mixed text content",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/st-simple" ]
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.item.prefix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "ON.item.prefix",
+      "max" : "*",
+      "min" : 0,
+      "path" : "ON.item.prefix",
+      "type" : [ {
+        "code" : "ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.item.suffix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "ON.item.suffix",
+      "max" : "*",
+      "min" : 0,
+      "path" : "ON.item.suffix",
+      "type" : [ {
+        "code" : "ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "ANY.nullFlavor",
+        "min" : 0,
+        "max" : "1"
+      },
+      "binding" : {
+        "strength" : "required",
+        "valueSet" : "http://hl7.org/cda/stds/core/ValueSet/CDANullFlavor"
+      },
+      "definition" : "If a value is an exceptional value (NULL-value), this specifies in what way and why proper information is missing.",
+      "id" : "ON.nullFlavor",
+      "label" : "Exceptional Value Detail",
+      "max" : "1",
+      "min" : 0,
+      "path" : "ON.nullFlavor",
+      "representation" : [ "xmlAttr" ],
+      "type" : [ {
+        "code" : "code",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple" ]
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.use",
+        "min" : 0,
+        "max" : "*"
+      },
+      "binding" : {
+        "strength" : "required",
+        "valueSet" : "http://hl7.org/cda/stds/core/ValueSet/CDAEntityNameUse"
+      },
+      "definition" : "A set of codes advising a system or user which name in a set of like names to select for a given purpose. A name without specific use code might be a default name useful for any purpose, but a name with a specific use code would be preferred for that respective purpose",
+      "id" : "ON.use",
+      "label" : "Use Code",
+      "max" : "*",
+      "min" : 0,
+      "path" : "ON.use",
+      "representation" : [ "xmlAttr" ],
+      "type" : [ {
+        "code" : "code",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple" ]
+      } ]
+    } ]
+  }
+}

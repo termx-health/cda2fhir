@@ -1,0 +1,396 @@
+{
+  "name": "Patient",
+  "resourceType": "StructureDefinition",
+  "type": "http://hl7.org/cda/stds/core/StructureDefinition/Patient",
+  "baseDefinition": "http://hl7.org/cda/stds/core/StructureDefinition/InfrastructureRoot",
+  "description": "A LivingSubject as a recipient of health care services from a healthcare provider.\nThe patient is the player; the provider is the scoper.",
+  "title": "Patient (CDA Class)",
+  "text": {
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>\n  <p>A LivingSubject as a recipient of health care services from a healthcare provider.</p>\n  <p>The patient is the player; the provider is the scoper.</p>\n</div>",
+    "status": "generated"
+  },
+  "status": "active",
+  "id": "Patient",
+  "publisher": "HL7",
+  "extension": [
+    {
+      "valueBoolean": {
+        "extension": [
+          {
+            "valueCode": "not-applicable",
+            "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+          }
+        ]
+      },
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-target"
+    },
+    {
+      "valueUri": "urn:hl7-org:v3",
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+    },
+    {
+      "valueString": "patient",
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+    },
+    {
+      "valueUri": "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument",
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-container"
+    }
+  ],
+  "abstract": false,
+  "url": "http://hl7.org/cda/stds/core/StructureDefinition/Patient",
+  "differential": {
+    "element": [
+      {
+        "max": "1",
+        "path": "Patient",
+        "min": 1,
+        "id": "Patient"
+      },
+      {
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-EntityClassLivingSubject",
+          "strength": "required"
+        },
+        "path": "Patient.classCode",
+        "max": "1",
+        "id": "Patient.classCode",
+        "type": [
+          {
+            "profile": [
+              "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple"
+            ],
+            "code": "code"
+          }
+        ],
+        "fixedCode": "PSN",
+        "representation": [
+          "xmlAttr"
+        ],
+        "min": 0
+      },
+      {
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-EntityDeterminer",
+          "strength": "required"
+        },
+        "path": "Patient.determinerCode",
+        "max": "1",
+        "id": "Patient.determinerCode",
+        "type": [
+          {
+            "profile": [
+              "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple"
+            ],
+            "code": "code"
+          }
+        ],
+        "fixedCode": "INSTANCE",
+        "representation": [
+          "xmlAttr"
+        ],
+        "min": 0
+      },
+      {
+        "path": "Patient.id",
+        "id": "Patient.id",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/II"
+          }
+        ],
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.name",
+        "id": "Patient.name",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/PN"
+          }
+        ],
+        "max": "*",
+        "min": 0
+      },
+      {
+        "path": "Patient.sdtcDesc",
+        "max": "1",
+        "id": "Patient.sdtcDesc",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/ED"
+          }
+        ],
+        "definition": "The desc extension allows multimedia depictions of patients, healthcare providers, or other individuals to be included in a CDA document.",
+        "min": 0,
+        "extension": [
+          {
+            "valueUri": "urn:hl7-org:sdtc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+          },
+          {
+            "valueString": "desc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+          }
+        ]
+      },
+      {
+        "path": "Patient.administrativeGenderCode",
+        "id": "Patient.administrativeGenderCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-AdministrativeGender",
+          "strength": "example"
+        },
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.birthTime",
+        "id": "Patient.birthTime",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/TS"
+          }
+        ],
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.sdtcDeceasedInd",
+        "id": "Patient.sdtcDeceasedInd",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/BL"
+          }
+        ],
+        "max": "1",
+        "min": 0,
+        "extension": [
+          {
+            "valueUri": "urn:hl7-org:sdtc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+          },
+          {
+            "valueString": "deceasedInd",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+          }
+        ]
+      },
+      {
+        "path": "Patient.sdtcDeceasedTime",
+        "id": "Patient.sdtcDeceasedTime",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/TS"
+          }
+        ],
+        "max": "1",
+        "min": 0,
+        "extension": [
+          {
+            "valueUri": "urn:hl7-org:sdtc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+          },
+          {
+            "valueString": "deceasedTime",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+          }
+        ]
+      },
+      {
+        "path": "Patient.sdtcMultipleBirthInd",
+        "id": "Patient.sdtcMultipleBirthInd",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/BL"
+          }
+        ],
+        "max": "1",
+        "min": 0,
+        "extension": [
+          {
+            "valueUri": "urn:hl7-org:sdtc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+          },
+          {
+            "valueString": "multipleBirthInd",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+          }
+        ]
+      },
+      {
+        "path": "Patient.sdtcMultipleBirthOrderNumber",
+        "id": "Patient.sdtcMultipleBirthOrderNumber",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/INT-POS"
+          }
+        ],
+        "max": "1",
+        "min": 0,
+        "extension": [
+          {
+            "valueUri": "urn:hl7-org:sdtc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+          },
+          {
+            "valueString": "multipleBirthOrderNumber",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+          }
+        ]
+      },
+      {
+        "path": "Patient.maritalStatusCode",
+        "id": "Patient.maritalStatusCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-MaritalStatus",
+          "strength": "example"
+        },
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.religiousAffiliationCode",
+        "id": "Patient.religiousAffiliationCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-ReligiousAffiliation",
+          "strength": "example"
+        },
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.raceCode",
+        "id": "Patient.raceCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-Race",
+          "strength": "example"
+        },
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.sdtcRaceCode",
+        "max": "*",
+        "id": "Patient.sdtcRaceCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-Race",
+          "strength": "example"
+        },
+        "min": 0,
+        "extension": [
+          {
+            "valueUri": "urn:hl7-org:sdtc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+          },
+          {
+            "valueString": "raceCode",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+          }
+        ]
+      },
+      {
+        "path": "Patient.ethnicGroupCode",
+        "id": "Patient.ethnicGroupCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-Ethnicity",
+          "strength": "example"
+        },
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.sdtcEthnicGroupCode",
+        "max": "*",
+        "id": "Patient.sdtcEthnicGroupCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-Ethnicity",
+          "strength": "example"
+        },
+        "min": 0,
+        "extension": [
+          {
+            "valueUri": "urn:hl7-org:sdtc",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+          },
+          {
+            "valueString": "ethnicGroupCode",
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+          }
+        ]
+      },
+      {
+        "path": "Patient.guardian",
+        "id": "Patient.guardian",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/Guardian"
+          }
+        ],
+        "max": "*",
+        "min": 0
+      },
+      {
+        "path": "Patient.birthplace",
+        "id": "Patient.birthplace",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/Birthplace"
+          }
+        ],
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Patient.languageCommunication",
+        "id": "Patient.languageCommunication",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/LanguageCommunication"
+          }
+        ],
+        "max": "*",
+        "min": 0
+      }
+    ]
+  },
+  "experimental": false,
+  "kind": "logical",
+  "derivation": "specialization"
+}

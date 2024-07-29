@@ -1,0 +1,169 @@
+{
+  "name": "Organization",
+  "resourceType": "StructureDefinition",
+  "type": "http://hl7.org/cda/stds/core/StructureDefinition/Organization",
+  "baseDefinition": "http://hl7.org/cda/stds/core/StructureDefinition/InfrastructureRoot",
+  "description": "An Entity representing a formalized group of persons or other organizations with a common purpose and the infrastructure to carry out that purpose.\n\nCompanies and institutions, a government department, an incorporated body that is responsible for administering a facility, an insurance company.",
+  "title": "Organization (CDA Class)",
+  "text": {
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>\n  <p>An Entity representing a formalized group of persons or other organizations with a common purpose and the infrastructure to carry out that purpose.</p>\n  <p>Companies and institutions, a government department, an incorporated body that is responsible for administering a facility, an insurance company.</p>\n</div>",
+    "status": "generated"
+  },
+  "status": "active",
+  "id": "Organization",
+  "publisher": "HL7",
+  "extension": [
+    {
+      "valueBoolean": {
+        "extension": [
+          {
+            "valueCode": "not-applicable",
+            "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+          }
+        ]
+      },
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-target"
+    },
+    {
+      "valueUri": "urn:hl7-org:v3",
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+    },
+    {
+      "valueString": "organization",
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-name"
+    },
+    {
+      "valueUri": "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument",
+      "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-container"
+    }
+  ],
+  "abstract": false,
+  "url": "http://hl7.org/cda/stds/core/StructureDefinition/Organization",
+  "differential": {
+    "element": [
+      {
+        "max": "1",
+        "path": "Organization",
+        "min": 1,
+        "id": "Organization"
+      },
+      {
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-EntityClassOrganization",
+          "strength": "required"
+        },
+        "path": "Organization.classCode",
+        "max": "1",
+        "id": "Organization.classCode",
+        "type": [
+          {
+            "profile": [
+              "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple"
+            ],
+            "code": "code"
+          }
+        ],
+        "fixedCode": "ORG",
+        "representation": [
+          "xmlAttr"
+        ],
+        "min": 0
+      },
+      {
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-EntityDeterminer",
+          "strength": "required"
+        },
+        "path": "Organization.determinerCode",
+        "max": "1",
+        "id": "Organization.determinerCode",
+        "type": [
+          {
+            "profile": [
+              "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple"
+            ],
+            "code": "code"
+          }
+        ],
+        "fixedCode": "INSTANCE",
+        "representation": [
+          "xmlAttr"
+        ],
+        "min": 0
+      },
+      {
+        "path": "Organization.id",
+        "id": "Organization.id",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/II"
+          }
+        ],
+        "max": "*",
+        "min": 0
+      },
+      {
+        "path": "Organization.name",
+        "id": "Organization.name",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/ON"
+          }
+        ],
+        "max": "*",
+        "min": 0
+      },
+      {
+        "path": "Organization.telecom",
+        "id": "Organization.telecom",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/TEL"
+          }
+        ],
+        "max": "*",
+        "min": 0
+      },
+      {
+        "path": "Organization.addr",
+        "id": "Organization.addr",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/AD"
+          }
+        ],
+        "max": "*",
+        "min": 0
+      },
+      {
+        "path": "Organization.standardIndustryClassCode",
+        "id": "Organization.standardIndustryClassCode",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/CE"
+          }
+        ],
+        "binding": {
+          "valueSet": "http://terminology.hl7.org/ValueSet/v3-OrganizationIndustryClassNAICS",
+          "strength": "example"
+        },
+        "max": "1",
+        "min": 0
+      },
+      {
+        "path": "Organization.asOrganizationPartOf",
+        "id": "Organization.asOrganizationPartOf",
+        "type": [
+          {
+            "code": "http://hl7.org/cda/stds/core/StructureDefinition/OrganizationPartOf"
+          }
+        ],
+        "max": "1",
+        "min": 0
+      }
+    ]
+  },
+  "experimental": false,
+  "kind": "logical",
+  "derivation": "specialization"
+}

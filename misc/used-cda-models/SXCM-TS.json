@@ -1,0 +1,70 @@
+{
+    "name": "SXCM_TS",
+    "resourceType": "StructureDefinition",
+    "differential": {
+      "element": [
+        {
+          "max": "*",
+          "path": "SXCM_TS",
+          "min": 1,
+          "id": "SXCM_TS"
+        },
+        {
+          "representation": [
+            "xmlAttr"
+          ],
+          "type": [
+            {
+              "profile": [
+                "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple"
+              ],
+              "code": "code"
+            }
+          ],
+          "definition": "A code specifying whether the set component is included (union) or excluded (set-difference) from the set, or other set operations with the current set component and the set as constructed from the representation stream up to the current point.",
+          "min": 0,
+          "path": "SXCM_TS.operator",
+          "binding": {
+            "valueSet": "http://hl7.org/cda/stds/core/ValueSet/CDASetOperator",
+            "strength": "required"
+          },
+          "defaultValueCode": "I",
+          "max": "1",
+          "id": "SXCM_TS.operator"
+        }
+      ]
+    },
+    "id": "SXCM-TS",
+    "type": "http://hl7.org/cda/stds/core/StructureDefinition/SXCM_TS",
+    "publisher": "HL7",
+    "derivation": "specialization",
+    "extension": [
+      {
+        "valueBoolean": {
+          "extension": [
+            {
+              "valueCode": "not-applicable",
+              "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+            }
+          ]
+        },
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-target"
+      },
+      {
+        "valueUri": "urn:hl7-org:v3",
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+      },
+      {
+        "valueUri": "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument",
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-container"
+      }
+    ],
+    "abstract": true,
+    "url": "http://hl7.org/cda/stds/core/StructureDefinition/SXCM-TS",
+    "title": "SXCM_TS: GeneralTimingSpecification (V3 Data Type)",
+    "baseDefinition": "http://hl7.org/cda/stds/core/StructureDefinition/TS",
+    "kind": "logical",
+    "experimental": false,
+    "description": "A set of points in time, specifying the timing of events and actions and the cyclical validity-patterns that may exist for certain kinds of information, such as phone numbers (evening, daytime), addresses (so called \"snowbirds,\" residing closer to the equator during winter and farther from the equator during summer) and office hours.",
+    "status": "active"
+  }

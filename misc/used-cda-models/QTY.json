@@ -1,0 +1,53 @@
+{
+    "name": "QTY",
+    "resourceType": "StructureDefinition",
+    "type": "http://hl7.org/cda/stds/core/StructureDefinition/QTY",
+    "baseDefinition": "http://hl7.org/cda/stds/core/StructureDefinition/ANY",
+    "description": "The quantity data type is an abstract generalization for all data types (1) whose value set has an order relation (less-or-equal) and (2) where difference is defined in all of the data type's totally ordered value subsets. The quantity type abstraction is needed in defining certain other types, such as the interval and the probability distribution.",
+    "title": "QTY: Quantity (V3 Data Type)",
+    "text": {
+      "div": "<div xmlns='http://www.w3.org/1999/xhtml'>\n  <p>The quantity data type is an abstract generalization for all data types (1) whose value set has an order relation (less-or-equal) and (2) where difference is defined in all of the data type&apos;s totally ordered value subsets. The quantity type abstraction is needed in defining certain other types, such as the interval and the probability distribution.</p>\n</div>",
+      "status": "generated"
+    },
+    "status": "active",
+    "id": "QTY",
+    "publisher": "HL7",
+    "extension": [
+      {
+        "valueBoolean": {
+          "extension": [
+            {
+              "valueCode": "not-applicable",
+              "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+            }
+          ]
+        },
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-target"
+      },
+      {
+        "valueUri": "urn:hl7-org:v3",
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace"
+      },
+      {
+        "valueUri": "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument",
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/logical-container"
+      }
+    ],
+    "abstract": true,
+    "url": "http://hl7.org/cda/stds/core/StructureDefinition/QTY",
+    "differential": {
+      "element": [
+        {
+          "path": "QTY",
+          "id": "QTY",
+          "definition": "is an abstract generalization for all data types (1) whose value set has an order relation (less-or-equal) and (2) where difference is defined in all of the data type's totally ordered value subsets. The quantity type abstraction is needed in defining certain other types, such as the interval and the probability distribution.",
+          "max": "*",
+          "min": 1
+        }
+      ]
+    },
+    "experimental": false,
+    "kind": "logical",
+    "derivation": "specialization"
+  }
+  

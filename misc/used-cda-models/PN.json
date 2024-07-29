@@ -1,0 +1,345 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "PN",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>A name for a person. A sequence of name parts, such as given name or family name, prefix, suffix, etc. Examples for person name values are &quot;Jim Bob Walton, Jr.&quot;, &quot;Adam Everyman&quot;, etc. A person name may be as simple as a character string or may consist of several person name parts, such as, &quot;Jim&quot;, &quot;Bob&quot;, &quot;Walton&quot;, and &quot;Jr.&quot;. PN differs from EN because the qualifier type cannot include LS (Legal Status).</p>\n    </div>"
+  },
+  "extension" : [ {
+    "url" : "http://hl7.org/fhir/tools/StructureDefinition/logical-target",
+    "_valueBoolean" : {
+      "extension" : [ {
+        "url" : "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "valueCode" : "not-applicable"
+      } ]
+    }
+  }, {
+    "url" : "http://hl7.org/fhir/tools/StructureDefinition/xml-namespace",
+    "valueUri" : "urn:hl7-org:v3"
+  }, {
+    "url" : "http://hl7.org/fhir/tools/StructureDefinition/xml-name",
+    "valueString" : "name"
+  }, {
+    "url" : "http://hl7.org/fhir/tools/StructureDefinition/logical-container",
+    "valueUri" : "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument"
+  } ],
+  "url" : "http://hl7.org/cda/stds/core/StructureDefinition/PN",
+  "name" : "PN",
+  "title" : "PN: PersonName (V3 Data Type)",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2023-12-16T16:29:56+00:00",
+  "publisher" : "Health Level 7",
+  "contact" : [ {
+    "name" : "HL7 International - Structured Documents",
+    "telecom" : [ {
+      "system" : "url",
+      "value" : "http://www.hl7.org/Special/committees/structure"
+    }, {
+      "system" : "email",
+      "value" : "structdog@lists.HL7.org"
+    } ]
+  } ],
+  "description" : "A name for a person. A sequence of name parts, such as given name or family name, prefix, suffix, etc. Examples for person name values are \"Jim Bob Walton, Jr.\", \"Adam Everyman\", etc. A person name may be as simple as a character string or may consist of several person name parts, such as, \"Jim\", \"Bob\", \"Walton\", and \"Jr.\". PN differs from EN because the qualifier type cannot include LS (Legal Status).",
+  "fhirVersion" : "5.0.0",
+  "mapping" : [ {
+    "identity" : "rim",
+    "uri" : "http://hl7.org/v3",
+    "name" : "RIM Mapping"
+  } ],
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "http://hl7.org/cda/stds/core/StructureDefinition/PN",
+  "baseDefinition" : "http://hl7.org/cda/stds/core/StructureDefinition/EN",
+  "derivation" : "specialization",
+  "snapshot" : {
+    "element" : [ {
+      "id" : "PN",
+      "path" : "PN",
+      "short" : "Base for all types and resources",
+      "definition" : "A name for a person. A sequence of name parts, such as given name or family name, prefix, suffix, etc. Examples for person name values are \"Jim Bob Walton, Jr.\", \"Adam Everyman\", etc. A person name may be as simple as a character string or may consist of several person name parts, such as, \"Jim\", \"Bob\", \"Walton\", and \"Jr.\". PN differs from EN because the qualifier type cannot include LS (Legal Status).",
+      "min" : 1,
+      "max" : "*",
+      "base" : {
+        "path" : "Base",
+        "min" : 0,
+        "max" : "*"
+      },
+      "constraint" : [ {
+        "key" : "pn-no-ls",
+        "severity" : "error",
+        "human" : "No PN name part may have a qualifier of LS.",
+        "expression" : "(delimiter | family | given | prefix | suffix).where(qualifier.where($this = 'LS').exists()).empty()"
+      } ],
+      "isModifier" : false,
+      "mapping" : [ {
+        "identity" : "rim",
+        "map" : "n/a"
+      } ]
+    }, {
+      "id" : "PN.nullFlavor",
+      "path" : "PN.nullFlavor",
+      "representation" : [ "xmlAttr" ],
+      "label" : "Exceptional Value Detail",
+      "definition" : "If a value is an exceptional value (NULL-value), this specifies in what way and why proper information is missing.",
+      "min" : 0,
+      "max" : "1",
+      "base" : {
+        "path" : "ANY.nullFlavor",
+        "min" : 0,
+        "max" : "1"
+      },
+      "type" : [ {
+        "code" : "code",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple" ]
+      } ],
+      "binding" : {
+        "strength" : "required",
+        "valueSet" : "http://hl7.org/cda/stds/core/ValueSet/CDANullFlavor"
+      }
+    }, {
+      "id" : "PN.use",
+      "path" : "PN.use",
+      "representation" : [ "xmlAttr" ],
+      "label" : "Use Code",
+      "definition" : "A set of codes advising a system or user which name in a set of like names to select for a given purpose. A name without specific use code might be a default name useful for any purpose, but a name with a specific use code would be preferred for that respective purpose",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.use",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "code",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/cs-simple" ]
+      } ],
+      "binding" : {
+        "strength" : "required",
+        "valueSet" : "http://hl7.org/cda/stds/core/ValueSet/CDAEntityNameUse"
+      }
+    }, {
+      "id" : "PN.item",
+      "extension" : [ {
+        "url" : "http://hl7.org/fhir/tools/StructureDefinition/xml-choice-group",
+        "valueBoolean" : true
+      } ],
+      "path" : "PN.item",
+      "definition" : "A series of items that constitute the name.",
+      "min" : 1,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.item",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/fhir/StructureDefinition/Base"
+      } ],
+      "constraint" : [ {
+        "key" : "EN-1",
+        "severity" : "error",
+        "human" : "Can only have only one of the possible item elements in each choice",
+        "expression" : "(delimiter | family | given | prefix | suffix | xmlText).count() = 1",
+        "source" : "http://hl7.org/cda/stds/core/StructureDefinition/EN"
+      } ]
+    }, {
+      "id" : "PN.delimiter",
+      "path" : "PN.delimiter",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.delimiter",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "PN.family",
+      "path" : "PN.family",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.family",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "PN.given",
+      "path" : "PN.given",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.given",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "PN.prefix",
+      "path" : "PN.prefix",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.prefix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "PN.suffix",
+      "path" : "PN.suffix",
+      "min" : 0,
+      "max" : "*",
+      "base" : {
+        "path" : "EN.suffix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "id" : "PN.xmlText",
+      "path" : "PN.xmlText",
+      "representation" : [ "xmlText" ],
+      "short" : "Allows for mixed text content",
+      "comment" : "This element is represented in XML as textual content. The actual name \"xmlText\" will not appear in a CDA instance.",
+      "min" : 0,
+      "max" : "1",
+      "base" : {
+        "path" : "EN.xmlText",
+        "min" : 0,
+        "max" : "1"
+      },
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/st-simple" ]
+      } ]
+    }, {
+      "id" : "PN.validTime",
+      "path" : "PN.validTime",
+      "label" : "Valid Time",
+      "definition" : "An interval of time specifying the time during which the name is or was used for the entity. This accomodates the fact that people change names for people, places and things.",
+      "min" : 0,
+      "max" : "1",
+      "base" : {
+        "path" : "EN.validTime",
+        "min" : 0,
+        "max" : "1"
+      },
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/IVL-TS"
+      } ]
+    } ]
+  },
+  "differential" : {
+    "element" : [ {
+      "constraint" : [ {
+        "key" : "pn-no-ls",
+        "severity" : "error",
+        "human" : "No PN name part may have a qualifier of LS.",
+        "expression" : "(delimiter | family | given | prefix | suffix).where(qualifier.where($this = 'LS').exists()).empty()"
+      } ],
+      "definition" : "A name for a person. A sequence of name parts, such as given name or family name, prefix, suffix, etc. Examples for person name values are \"Jim Bob Walton, Jr.\", \"Adam Everyman\", etc. A person name may be as simple as a character string or may consist of several person name parts, such as, \"Jim\", \"Bob\", \"Walton\", and \"Jr.\". PN differs from EN because the qualifier type cannot include LS (Legal Status).",
+      "id" : "PN",
+      "path" : "PN"
+    }, {
+      "id" : "PN.item",
+      "max" : "*",
+      "min" : 1,
+      "path" : "PN.item"
+    }, {
+      "base" : {
+        "path" : "EN.delimiter",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "PN.delimiter",
+      "max" : "*",
+      "min" : 0,
+      "path" : "PN.delimiter",
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.family",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "PN.family",
+      "max" : "*",
+      "min" : 0,
+      "path" : "PN.family",
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.given",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "PN.given",
+      "max" : "*",
+      "min" : 0,
+      "path" : "PN.given",
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.suffix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "PN.suffix",
+      "max" : "*",
+      "min" : 0,
+      "path" : "PN.suffix",
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.prefix",
+        "min" : 0,
+        "max" : "*"
+      },
+      "id" : "PN.prefix",
+      "max" : "*",
+      "min" : 0,
+      "path" : "PN.prefix",
+      "type" : [ {
+        "code" : "http://hl7.org/cda/stds/core/StructureDefinition/ENXP"
+      } ]
+    }, {
+      "base" : {
+        "path" : "EN.xmlText",
+        "min" : 0,
+        "max" : "1"
+      },
+      "comment" : "This element is represented in XML as textual content. The actual name \"xmlText\" will not appear in a CDA instance.",
+      "id" : "PN.xmlText",
+      "max" : "1",
+      "min" : 0,
+      "path" : "PN.xmlText",
+      "representation" : [ "xmlText" ],
+      "short" : "Allows for mixed text content",
+      "type" : [ {
+        "code" : "string",
+        "profile" : [ "http://hl7.org/cda/stds/core/StructureDefinition/st-simple" ]
+      } ]
+    } ]
+  }
+}

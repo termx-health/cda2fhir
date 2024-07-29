@@ -1,0 +1,18 @@
+{
+  "id" : "EN",
+  "name" : "EN",
+  "resourceType" : "StructureDefinition",
+  "kind" : "logical",
+  "url" : "http://hl7.org/cda/stds/core/StructureDefinition/EN",
+  "type" : "http://hl7.org/cda/stds/core/StructureDefinition/EN",
+  "fhirVersion" : "5.0.0",
+  "abstract" : false,
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "EN",
+      "path" : "EN"
+    } ]
+  }
+}
