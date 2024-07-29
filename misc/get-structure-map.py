@@ -32,7 +32,7 @@ def get_data_and_save_files(api_url):
                         if key == "mapping":
                             mapping = obj[key]
                         if key == "resources":
-                            mapping = obj[key]
+                            resources = obj[key]
                         if key == "testSource":
                             example = obj[key]
                     
