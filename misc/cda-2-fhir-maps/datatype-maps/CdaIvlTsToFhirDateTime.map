@@ -1,0 +1,16 @@
+map "http://termx.health/fhir/StructureMap/CdaIvlTsToFhirDateTime" = "CdaIvlTsToFhirDateTime"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/IVL_TS" alias IVL_TS as source
+uses "http://hl7.org/fhir/StructureDefinition/dateTime" alias dateTime as target
+
+group CdaIvlTsToFhirDateTime(source IVLTS : IVL_TS, target dateTime : dateTime) {
+  IVLTS ->
+   dateTime then {
+    IVLTS.value as ivlTsValue ->
+   cast(ivlTsValue, 'string') as ivlTsAsString then {
+      IVLTS ->
+   dateTime.value = cast(ivlTsAsString, 'dateTime') as ivlTsAsDateTime "ivl_ts_as_string_to_datetime";
+    } "ivl_ts_value_to_string";
+  } "ivlt_ts_to_datetime";
+}
+

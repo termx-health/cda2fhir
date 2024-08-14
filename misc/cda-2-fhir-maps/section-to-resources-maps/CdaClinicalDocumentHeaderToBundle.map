@@ -1,0 +1,96 @@
+map "http://termx.health/fhir/StructureMap/RainerKasvamiseTeatisToFhir" = "RainerKasvamiseTeatisToFhir"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://termx.health/fhir/StructureMap/CdaTelToFhirExtendedContactDetail"
+imports "http://termx.health/fhir/StructureMap/CdaAdToFhirExtendedContactDetail"
+imports "http://termx.health/fhir/StructureMap/CdaPnToFhirHumanName"
+imports "http://termx.health/fhir/StructureMap/CdaCeToFhirCodeableConcept"
+imports "http://termx.health/fhir/StructureMap/CdaCustodianOrganizationToFhirOrganization"
+imports "http://termx.health/fhir/StructureMap/CdaAssignedAuthorToFhirOrganization"
+imports "http://termx.health/fhir/StructureMap/CdaAssignedAuhtorToFhirPracticioner"
+imports "http://termx.health/fhir/StructureMap/CdaPatientRoleToFhirPatient"
+
+group ClinicalDocumentHeaderToBundle(source ClinicalDocument : ClinicalDocument, target Bundle : Bundle) {
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument -> Bundle.meta = create('Meta') as a then {
+      ClinicalDocument then KasvamiseTeatisToMeta(ClinicalDocument, a) "rule_group_579";
+    } "rule_578";
+  } "rule_577";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument -> Bundle.entry as a then {
+      ClinicalDocument -> a.resource = create('Composition') as b then {
+        ClinicalDocument then KasvamiseTeatisToComposition(ClinicalDocument, b) "rule_group_583";
+      } "rule_582";
+    } "rule_581";
+  } "rule_580";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument.custodian as a -> Bundle.entry as b then {
+      a.assignedCustodian as c -> b.resource = create('Organization') as d then {
+        c.representedCustodianOrganization as e -> d then {
+          e then CdaCustodianOrganizationToFhirOrganization(d, e) "rule_group_588";
+        } "rule_587";
+      } "rule_586";
+    } "rule_585";
+  } "rule_584";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument.author as a -> Bundle.entry as b then {
+      a.assignedAuthor as c -> b.resource = create('Practitioner') as d then {
+        c then CdaAssignedAuhtorToFhirPracticioner(c, d) "rule_group_723";
+      } "rule_722";
+    } "rule_721";
+  } "rule_720";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument.author as a -> Bundle.entry as b then {
+      a.assignedAuthor as c -> b.resource = create('Organization') as d then {
+        c then CdaAssignedAuthorToFhirOrganization(c, d) "rule_group_727";
+      } "rule_726";
+    } "rule_725";
+  } "rule_724";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument.recordTarget as a -> Bundle.entry as b then {
+      a.patientRole as c -> b.resource = create('Patient') as d then {
+        c then CdaPatientRoleToFhirPatient(d, c) "rule_group_843";
+      } "rule_842";
+    } "rule_841";
+  } "rule_840";
+}
+
+group ClinicalDocumentHeaderToMeta(source ClinicalDocument : ClinicalDocument, target Meta : Meta) {
+  ClinicalDocument ->
+   Meta then {
+    ClinicalDocument.confidentialityCode as a ->
+   Meta.security = create('Coding') as b then {
+      a.code as c ->
+   b.code = c "dset_679";
+      a.codeSystem as d ->
+   b.system = d "dset_680";
+      a.displayName as e ->
+   b.display = e "dset_681";
+    } "rule_678";
+  } "rule_677";
+}
+
+group ClinicalDocumentToComposition(source ClinicalDocument : ClinicalDocument, target Composition : Composition) {
+  ClinicalDocument ->
+   Composition then {
+    ClinicalDocument ->
+   Composition.status = ('final') as constant108 "const_683";
+  } "rule_682";
+  ClinicalDocument ->
+   Composition then {
+    ClinicalDocument.code as a ->
+   Composition.type = create('CodeableConcept') as b then {
+      a then CdaCeToFhirCodeableConcept(a, b) "rule_group_686";
+    } "rule_685";
+  } "rule_684";
+  ClinicalDocument ->
+   Composition then {
+    ClinicalDocument.effectiveTime as a ->
+   Composition.date = create('dateTime') as b then {
+      a.value as c ->
+   b.value = c "dset_689";
+    } "rule_688";
+  } "rule_687";
+}

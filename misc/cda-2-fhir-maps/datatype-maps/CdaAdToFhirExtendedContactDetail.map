@@ -1,0 +1,41 @@
+map "http://termx.health/fhir/StructureMap/CdaAdToFhirExtendedContactDetail" = "CdaAdToFhirExtendedContactDetail"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/AD" alias AD as source
+uses "http://hl7.org/fhir/StructureDefinition/ExtendedContactDetail" alias ExtendedContactDetail as target
+
+group CdaAdToFhirExtendedContactDetail(source AD : AD, target ExtendedContactDetail : ExtendedContactDetail) {
+  AD ->
+   ExtendedContactDetail then {
+    AD.unitID as addressUnitId ->
+   ExtendedContactDetail.address = create('Address') as b then {
+      addressUnitId.xmlText as unitXmlText ->
+   b.line = unitXmlText "unit_id_to_address_line";
+      AD.streetName as addressStreetName ->
+   b then {
+        addressStreetName.xmlText as streetNameXmlText ->
+   b.line = streetNameXmlText "street_name_to_address_line";
+        AD.houseNumber as addresshouseNumber ->
+   b then {
+          addresshouseNumber.xmlText as houseNumberXmlText ->
+   b.line = houseNumberXmlText "house_number_to_address_line";
+          AD.postalCode as addressPostalCode ->
+   b then {
+            addressPostalCode.xmlText as postalCodeXmlText ->
+   b.postalCode = postalCodeXmlText "postal_code";
+            AD.city as addressCity ->
+   b then {
+              addressCity.xmlText as cityXmlText ->
+   b.city = cityXmlText "city";
+              AD.county as addressCounty ->
+   b then {
+                addressCounty.xmlText as countyXmlText ->
+   b.line = countyXmlText "county_to_address_line";
+              } "cda_county_to_fhir";
+            } "cda_city_to_fhir";
+          } "cda_postal_code_to_fhir";
+        } "cda_house_number_to_fhir";
+      } "cda_street_name_to_fhir";
+    } "cda_unit_id_to_fhir";
+  } "cda_ad_to_fhir_extended_contact_detail";
+}
+

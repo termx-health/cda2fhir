@@ -1,0 +1,39 @@
+map "http://termx.health/fhir/StructureMap/CdaAssignedAuhtorToFhirPracticioner" = "CdaAssignedAuhtorToFhirPracticioner"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor" alias AssignedAuthor as source
+uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as target
+
+imports "http://termx.health/fhir/StructureMap/CdaIiToFhirIdentifier"
+imports "http://termx.health/fhir/StructureMap/CdaPnToFhirHumanName"
+imports "http://termx.health/fhir/StructureMap/CdaCeToFhirCodeableConcept"
+
+group CdaAssignedAuhtorToFhirPracticioner(source AssignedAuthor : AssignedAuthor, target Practitioner : Practitioner) {
+  AssignedAuthor ->
+   Practitioner then {
+    AssignedAuthor.id as a ->
+   Practitioner.identifier = create('Identifier') as b then {
+      a then CdaIiToFhirIdentifier(a, b) "cda_ii_to_identifier_imported_rule";
+    } "set_practitioner_identifier";
+  } "assignedauthor_to_practitioner_for_identifier";
+  AssignedAuthor ->
+   Practitioner then {
+    AssignedAuthor.assignedPerson as a ->
+   Practitioner.name = create('HumanName') as b then {
+      a.name as c ->
+   b then {
+        c then CdaPnToFhirHumanName(c, b) "cda_pn_to_humanname_imported_rule";
+      } "set_human_name";
+    } "create_human_name";
+  } "assignedauthor_to_practitioner_for_name";
+  AssignedAuthor ->
+   Practitioner then {
+    AssignedAuthor.code as a ->
+   Practitioner.qualification as b then {
+      a ->
+   b.code = create('CodeableConcept') as c then {
+        a then CdaCeToFhirCodeableConcept(a, c) "rule_group_41";
+      } "set_codeable_concept";
+    } "create_codeable_concept";
+  } "assignedauthor_to_practitioner_for_qualification";
+}
+

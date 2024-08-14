@@ -1,0 +1,18 @@
+map "http://termx.health/fhir/StructureMap/CdaIiToFhirIdentifier" = "CdaIiToFhirIdentifier"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/II" alias II as source
+uses "http://hl7.org/fhir/StructureDefinition/Identifier" alias Identifier as target
+
+group CdaIiToFhirIdentifier(source II : II, target Identifier : Identifier) {
+  II ->
+   Identifier then {
+    II.root as identifierSystem ->
+   Identifier.system = identifierSystem "identifier_system_code";
+  } "system";
+  II ->
+   Identifier then {
+    II.extension as identifierValue ->
+   Identifier.value = identifierValue "identifier_value";
+  } "value";
+}
+

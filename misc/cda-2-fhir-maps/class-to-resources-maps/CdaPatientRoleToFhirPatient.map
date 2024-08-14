@@ -1,0 +1,38 @@
+map "http://termx.health/fhir/StructureMap/CdaPatientRoleToFhirPatient" = "CdaPatientRoleToFhirPatient"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/TS" alias TS as source
+uses "http://hl7.org/fhir/StructureDefinition/date" alias date as target
+
+imports "http://hl7.org/fhir/StructureMap/CdaTsToFhirDate"
+imports "http://termx.health/fhir/StructureMap/CdaIiToFhirIdentifier"
+imports "http://termx.health/fhir/StructureMap/CdaPnToFhirHumanName"
+imports "http://termx.health/fhir/StructureMap/CdaAdToFhirExtendedContactDetail"
+
+group CdaPatientRoleToFhirPatient(source PatientRole : PatientRole, target Patient : Patient) {
+  PatientRole -> Patient then {
+    PatientRole.id as a -> Patient.identifier = create('Identifier') as b then {
+      a then CdaIiToFhirIdentifier(a, b) "rule_group_40";
+    } "rule_39";
+  } "rule_38";
+  PatientRole -> Patient then {
+    PatientRole.patient as a -> Patient.name = create('HumanName') as b then {
+      a.name as c -> b then {
+        c then CdaPnToFhirHumanName(c, b) "rule_group_44";
+      } "rule_43";
+    } "rule_42";
+  } "rule_41";
+  PatientRole -> Patient then {
+    PatientRole.patient as a -> Patient.birthDate = create('date') as b then {
+      a.birthTime as c -> b then {
+        c then CdaTsToFhirDate(c, b);
+      } "rule_47";
+    } "rule_46";
+  } "rule_45";
+  PatientRole -> Patient then {
+    PatientRole.addr as a -> Patient.contact as b then {
+      a -> b.address = create('Address') as c then {
+        a then CdaAdToFhirAddress(a, c) "rule_group_52";
+      } "rule_51";
+    } "rule_50";
+  } "rule_49";
+}

@@ -1,0 +1,39 @@
+map "http://termx.health/fhir/StructureMap/CdaAssignedAuthorToFhirOrganization" = "CdaAssignedAuthorToFhirOrganization"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/AssignedAuthor" alias AssignedAuthor as source
+uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
+
+imports "http://termx.health/fhir/StructureMap/CdaIiToFhirIdentifier"
+imports "http://termx.health/fhir/StructureMap/CdaTelToFhirExtendedContactDetail"
+imports "http://termx.health/fhir/StructureMap/CdaAdToFhirExtendedContactDetail"
+
+group CdaAssignedAuthorToFhirOrganization(source AssignedAuthor : AssignedAuthor, target Organization : Organization) {
+  AssignedAuthor -> Organization then {
+    AssignedAuthor.representedOrganization as a -> Organization.identifier = create('Identifier') as b then {
+      a.id as c -> b then {
+        c then CdaIiToFhirIdentifier(c, b) "rule_group_36";
+      } "rule_35";
+    } "rule_34";
+  } "rule_33";
+  AssignedAuthor -> Organization then {
+    AssignedAuthor.representedOrganization as a -> Organization.name = create('string') as b then {
+      a.name as c -> b then {
+        c.xmlText as d -> b.value = d "dset_40";
+      } "rule_39";
+    } "rule_38";
+  } "rule_37";
+  AssignedAuthor -> Organization then {
+    AssignedAuthor.representedOrganization as a -> Organization.contact = create('ExtendedContactDetail') as b then {
+      a.telecom as c -> b then {
+        c then CdaTelToFhirExtendedContactDetail(c, b) "rule_group_44";
+      } "rule_43";
+    } "rule_42";
+  } "rule_41";
+  AssignedAuthor -> Organization then {
+    AssignedAuthor.representedOrganization as a -> Organization.contact = create('ExtendedContactDetail') as b then {
+      a.addr as c -> b then {
+        c then CdaAdToFhirExtendedContactDetail(c, b) "rule_group_48";
+      } "rule_47";
+    } "rule_46";
+  } "rule_45";
+}

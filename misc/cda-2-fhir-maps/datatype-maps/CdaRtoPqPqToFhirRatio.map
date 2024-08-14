@@ -1,0 +1,24 @@
+map "http://termx.health/fhir/StructureMap/CdaRtoPqPqToFhirRatio" = "CdaRtoPqPqToFhirRatio"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/RTO_PQ_PQ" alias RTO_PQ_PQ as source
+uses "http://hl7.org/fhir/StructureDefinition/Ratio" alias Ratio as target
+
+imports "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity"
+
+group CdaRtoPqPqToFhirRatio(source RTOPQPQ : RTO_PQ_PQ, target Ratio : Ratio) {
+  RTOPQPQ ->
+   Ratio then {
+    RTOPQPQ.numerator as RtoPqPqNumerator ->
+   Ratio.numerator = create('Quantity') as RatioNumerator then {
+      RtoPqPqNumerator then CdaPqToFhirQuantity(RtoPqPqNumerator, RatioNumerator) "numerator_transform";
+    } "set_ratio_numerator";
+  } "cda_rto_pq_pq_numerator_to_fhir_ratio_numerator";
+  RTOPQPQ ->
+   Ratio then {
+    RTOPQPQ.denominator as RtoPqPqDenominator ->
+   Ratio.denominator = create('Quantity') as RatioDenominator then {
+      RtoPqPqDenominator then CdaPqToFhirQuantity(RtoPqPqDenominator, RatioDenominator) "denominator_transform";
+    } "set_ratio_denominator";
+  } "cda_rto_pq_pq_denominator_to_fhir_ratio_denominator";
+}
+

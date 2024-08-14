@@ -1,0 +1,20 @@
+map "http://termx.health/fhir/StructureMap/CdaCdToFhirCodeableConcept" = "CdaCdToFhirCodeableConcept"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/CD" alias CD as source
+uses "http://hl7.org/fhir/StructureDefinition/CodeableConcept" alias CodeableConcept as target
+
+group CdaCdToFhirCodeableConcept(source CD : CD, target CodeableConcept : CodeableConcept) {
+  CD ->
+   CodeableConcept then {
+    CD ->
+   CodeableConcept.coding = create('Coding') as a then {
+      CD.codeSystem as codingSystem ->
+   a.system = codingSystem "coding_system";
+      CD.displayName as codeDisplayName ->
+   a.display = codeDisplayName "coding_display_name";
+      CD.code as codeValue ->
+   a.code = codeValue "code_Value";
+    } "cda_cd_to_fhir_coding";
+  } "cda_cd_to_fhir_codeable_concept";
+}
+

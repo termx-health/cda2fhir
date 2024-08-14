@@ -1,0 +1,45 @@
+map "http://termx.health/fhir/StructureMap/CdaPnToFhirHumanName" = "CdaPnToFhirHumanName"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/PN" alias PN as source
+uses "http://hl7.org/fhir/StructureDefinition/HumanName" alias HumanName as target
+
+group CdaPnToFhirHumanName(source PN : PN, target HumanName : HumanName) {
+  PN ->
+   HumanName then {
+    PN.use as nameUse ->
+   HumanName.use = nameUse "use_to_use";
+  } "name_use";
+  PN ->
+   HumanName then {
+    PN.family as familyName ->
+   HumanName then {
+      familyName.xmlText as familyNameXmlText ->
+   HumanName.family = familyNameXmlText "set_family_name_xml_text";
+    } "family_to_family";
+  } "pn_family_to_human_name_family";
+  PN ->
+   HumanName then {
+    PN.given as givenName ->
+   HumanName then {
+      givenName.xmlText as givenNameXmlText ->
+   HumanName.given = givenNameXmlText "set_given_name_xml_text";
+    } "given_to_given";
+  } "pn_given_to_human_name_given";
+  PN ->
+   HumanName then {
+    PN.prefix as namePrefix ->
+   HumanName then {
+      namePrefix.xmlText as namePrefixXmlText ->
+   HumanName.prefix = namePrefixXmlText "set_name_prefix_xml_text";
+    } "prefix_to_prefix";
+  } "pn_prefix_to_human_name_prefix";
+  PN ->
+   HumanName then {
+    PN.suffix as nameSuffix ->
+   HumanName then {
+      nameSuffix.xmlText as nameSuffixXmlText ->
+   HumanName.suffix = nameSuffixXmlText "set_name_suffix_xml_text";
+    } "suffix_to_suffix";
+  } "pn_suffix_to_human_name_suffix";
+}
+

@@ -1,0 +1,25 @@
+map "http://termx.health/fhir/StructureMap/CdaCustodianOrganizationToFhirOrganization" = "CdaCustodianOrganizationToFhirOrganization"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/CustodianOrganization" alias CustodianOrganization as source
+uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
+
+imports "http://termx.health/fhir/StructureMap/CdaIiToFhirIdentifier"
+
+group CdaCustodianOrganizationToFhirOrganization(source CustodianOrganization : CustodianOrganization, target Organization : Organization) {
+  CustodianOrganization ->
+   Organization then {
+    CustodianOrganization.id as a ->
+   Organization.identifier = create('Identifier') as b then {
+      a then CdaIiToFhirIdentifier(a, b) "cda_ii_to_identifier_imported_rule";
+    } "custodian_organization_id_to_organization_identifier";
+  } "custodian_organization_to_organization_for_identifier";
+  CustodianOrganization ->
+   Organization then {
+    CustodianOrganization.name as a ->
+   Organization then {
+      a.xmlText as b ->
+   Organization.name = b "set_organization_name";
+    } "custodian_organization_name_to_organization_name";
+  } "custodian_organization_to_organization_for_name";
+}
+

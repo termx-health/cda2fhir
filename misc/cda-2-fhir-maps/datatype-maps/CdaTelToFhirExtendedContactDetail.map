@@ -1,0 +1,18 @@
+map "http://termx.health/fhir/StructureMap/CdaTelToFhirExtendedContactDetail" = "CdaTelToFhirExtendedContactDetail"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/TEL" alias TEL as source
+uses "http://hl7.org/fhir/StructureDefinition/ExtendedContactDetail" alias ExtendedContactDetail as target
+
+group CdaTelToFhirExtendedContactDetail(source TEL : TEL, target ExtendedContactDetail : ExtendedContactDetail) {
+  TEL ->
+   ExtendedContactDetail then {
+    TEL ->
+   ExtendedContactDetail.telecom = create('ContactPoint') as contactPoint then {
+      TEL.use as telUse ->
+   contactPoint.use = telUse "set_use";
+      TEL.value as telValue ->
+   contactPoint.value = telValue "set_value";
+    } "tel_to_contact_point";
+  } "tel_to_extended_contact_detail";
+}
+

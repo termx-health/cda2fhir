@@ -1,0 +1,18 @@
+map "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity" = "CdaPqToFhirQuantity"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/PQ" alias PQ as source
+uses "http://hl7.org/fhir/StructureDefinition/Quantity" alias Quantity as target
+
+group CdaPqToFhirQuantity(source PQ : PQ, target Quantity : Quantity) {
+  PQ ->
+   Quantity then {
+    PQ.value as quantityValue ->
+   Quantity.value = quantityValue "set_value";
+  } "pq_value_to_quantity_value";
+  PQ ->
+   Quantity then {
+    PQ.unit as quantityUnit ->
+   Quantity.unit = quantityUnit "set_unit";
+  } "pq_unit_to_quantity_unit";
+}
+
