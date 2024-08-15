@@ -1,0 +1,33 @@
+map "http://termx.health/fhir/StructureMap/CdaGrowthSectionToFhirBundle" = "CdaGrowthSectionToFhirBundle"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/Section" alias Section as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://termx.health/fhir/StructureMap/CdaIvlTsToFhirDateTime"
+imports "http://termx.health/fhir/StructureMap/CdaCdToFhirCodeableConcept"
+imports "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity"
+imports "http://termx.health/fhir/StructureMap/CdaObservationToFhirObservation"
+
+group CdaGrowthSectionToFhirBundle(source Section : Section, target Bundle : Bundle) {
+  Section -> Bundle then {
+    Section.entry first as a where observation.code.code=363809009 -> Bundle.entry as b then {
+      a.observation as c -> b.resource = create('Observation') as d then {
+        c then CdaObservationToFhirObservation(c, d) "rule_group_62";
+      } "rule_61";
+    } "rule_60";
+  } "rule_59";
+  Section -> Bundle then {
+    Section.entry first as a where observation.code.code=50373000 -> Bundle.entry as b then {
+      a.observation as c -> b.resource = create('Observation') as d then {
+        c then CdaObservationToFhirObservation(c, d) "rule_group_66";
+      } "rule_65";
+    } "rule_64";
+  } "rule_63";
+  Section -> Bundle then {
+    Section.entry first as a where observation.code.code='HPM' -> Bundle.entry as b then {
+      a.observation as c -> b.resource = create('Observation') as d then {
+        c then CdaObservationToFhirObservation(c, d) "rule_group_70";
+      } "rule_69";
+    } "rule_68";
+  } "rule_67";
+}

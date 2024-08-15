@@ -1,0 +1,36 @@
+map "http://termx.health/fhir/StructureMap/CdaGrowthReportToFhirBundle" = "CdaGrowthReportToFhirBundle"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://termx.health/fhir/StructureMap/CdaClinicalDocumentHeaderToBundle"
+imports "http://termx.health/fhir/StructureMap/CdaAgeSectionToFhirObservation"
+imports "http://termx.health/fhir/StructureMap/CdaGrowthSectionToFhirBundle"
+
+group KasvamiseTeatisToBundle(source ClinicalDocument : ClinicalDocument, target Bundle : Bundle) {
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument then ClinicalDocumentHeaderToBundle(ClinicalDocument, Bundle) "rule_group_679";
+  } "rule_678";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument.component as a -> Bundle then {
+      a.structuredBody as b -> Bundle then {
+        b.component first as c where section.code.code='GROWTH' -> Bundle then {
+          c.section as d -> Bundle then {
+            d then CdaAgeSectionToFhirObservation(d, Bundle) "rule_group_685";
+          } "rule_684";
+        } "rule_683";
+      } "rule_682";
+    } "rule_681";
+  } "rule_680";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument.component as a -> Bundle.entry as b then {
+      a.structuredBody as c -> b.resource = create('Observation') as d then {
+        c.component first as e where section.code.code='AGE' -> d then {
+          e.section as f -> d then {
+            f then CdaGrowthSectionToFhirBundle(f, d) "rule_group_691";
+          } "rule_690";
+        } "rule_689";
+      } "rule_688";
+    } "rule_687";
+  } "rule_686";
+}

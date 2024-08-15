@@ -1,4 +1,4 @@
-map "http://termx.health/fhir/StructureMap/RainerKasvamiseTeatisToFhir" = "RainerKasvamiseTeatisToFhir"
+map "http://termx.health/fhir/StructureMap/CdaClinicalDocumentHeaderToBundle" = "CdaClinicalDocumentHeaderToBundle"
 
 uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target

@@ -1,0 +1,33 @@
+map "http://termx.health/fhir/StructureMap/CdaObservationToFhirObservation" = "CdaObservationToFhirObservation"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/Observation" alias ObservationCda as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as target
+
+imports "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity"
+imports "http://termx.health/fhir/StructureMap/CdaCdToFhirCodeableConcept"
+imports "http://termx.health/fhir/StructureMap/CdaIvlTsToFhirDateTime"
+
+group CdaObservationToFhirObservation(source ObservationCda : ObservationCda, target Observation : Observation) {
+  ObservationCda ->
+   Observation then {
+    ObservationCda.code as a ->
+   Observation.code = create('CodeableConcept') as b then {
+      a then CdaCdToFhirCodeableConcept(a, b) "rule_group_27";
+    } "rule_26";
+  } "rule_25";
+  ObservationCda ->
+   Observation then {
+    ObservationCda.effectiveTime as a ->
+   Observation.effective = create('dateTime') as b then {
+      a then CdaIvlTsToFhirDateTime(a, b) "rule_group_30";
+    } "rule_29";
+  } "rule_28";
+  ObservationCda ->
+   Observation then {
+    ObservationCda.value as a ->
+   Observation.value = create('Quantity') as b then {
+      a then CdaPqToFhirQuantity(a, b) "rule_group_33";
+    } "rule_32";
+  } "rule_31";
+}
+

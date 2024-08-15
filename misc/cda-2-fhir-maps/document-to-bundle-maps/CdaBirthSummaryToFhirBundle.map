@@ -1,0 +1,14 @@
+map "http://termx.health/fhir/StructureMap/CdaBirthSummaryToFhirBundle" = "CdaBirthSummaryToFhirBundle"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://termx.health/fhir/StructureMap/CdaClinicalDocumentHeaderToBundle"
+
+group example(source ClinicalDocument : ClinicalDocument, target Bundle : Bundle) {
+  ClinicalDocument ->
+   Bundle then {
+    ClinicalDocument then ClinicalDocumentHeaderToBundle(ClinicalDocument, Bundle) "rule_group_5";
+  } "rule_4";
+}
+
