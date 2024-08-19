@@ -3,35 +3,14 @@ map "http://termx.health/fhir/StructureMap/CdaAgeSectionToFhirObservation" = "Cd
 uses "http://hl7.org/cda/stds/core/StructureDefinition/Section" alias Section as source
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as target
 
-imports "http://termx.health/fhir/StructureMap/CdaCdToFhirCodeableConcept"
-imports "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity"
+imports "http://termx.health/fhir/StructureMap/CdaPqObservationToFhirQuantityComponentsObservation"
 
 group CdaAgeSectionToFhirObservation(source Section : Section, target Observation : Observation) {
-  Section ->
-   Observation then {
-    Section.entry as a ->
-   Observation.code = create('CodeableConcept') as b then {
-      a.observation as c ->
-   b then {
-        c.code as d ->
-   b then {
-          d then CdaCdToFhirCodeableConcept(d, b) "rule_group_29";
-        } "rule_28";
-      } "rule_27";
-    } "rule_26";
-  } "rule_25";
-  Section ->
-   Observation then {
-    Section.entry as a ->
-   Observation.value = create('Quantity') as b then {
-      a.observation as c ->
-   b then {
-        c.value as d ->
-   b then {
-          d then CdaPqToFhirQuantity(d, b) "rule_group_34";
-        } "rule_33";
-      } "rule_32";
-    } "rule_31";
-  } "rule_30";
+  Section -> Observation then {
+    Section.entry as a -> Observation then {
+      a.observation as b -> Observation then {
+        b then CdaPqObservationToFhirQuantityComponentsObservation(b, Observation) "rule_group_24";
+      } "rule_23";
+    } "rule_22";
+  } "rule_21";
 }
-

@@ -1,4 +1,3 @@
-map "http://termx.health/fhir/StructureMap/CdaGrowthSectionToFhirBundle" = "CdaGrowthSectionToFhirBundle"
 
 uses "http://hl7.org/cda/stds/core/StructureDefinition/Section" alias Section as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
@@ -6,28 +5,44 @@ uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
 imports "http://termx.health/fhir/StructureMap/CdaIvlTsToFhirDateTime"
 imports "http://termx.health/fhir/StructureMap/CdaCdToFhirCodeableConcept"
 imports "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity"
-imports "http://termx.health/fhir/StructureMap/CdaObservationToFhirObservation"
+imports "http://termx.health/fhir/StructureMap/CdaPqObservationToFhirQuantityObservation"
+imports "http://termx.health/fhir/StructureMap/CdaRtoPqPqObservationToFhirRatioObservation"
+imports "http://termx.health/fhir/StructureMap/CdaEntryRelationshipsObservationToFhirComponentsObservation"
 
 group CdaGrowthSectionToFhirBundle(source Section : Section, target Bundle : Bundle) {
   Section -> Bundle then {
     Section.entry first as a where observation.code.code=363809009 -> Bundle.entry as b then {
       a.observation as c -> b.resource = create('Observation') as d then {
-        c then CdaObservationToFhirObservation(c, d) "rule_group_62";
-      } "rule_61";
-    } "rule_60";
-  } "rule_59";
+        c then CdaPqObservationToFhirQuantityObservation(c, d) "rule_group_99";
+      } "rule_98";
+    } "rule_97";
+  } "rule_96";
   Section -> Bundle then {
     Section.entry first as a where observation.code.code=50373000 -> Bundle.entry as b then {
       a.observation as c -> b.resource = create('Observation') as d then {
-        c then CdaObservationToFhirObservation(c, d) "rule_group_66";
-      } "rule_65";
-    } "rule_64";
-  } "rule_63";
+        c then CdaPqObservationToFhirQuantityObservation(c, d) "rule_group_103";
+      } "rule_102";
+    } "rule_101";
+  } "rule_100";
   Section -> Bundle then {
     Section.entry first as a where observation.code.code='HPM' -> Bundle.entry as b then {
       a.observation as c -> b.resource = create('Observation') as d then {
-        c then CdaObservationToFhirObservation(c, d) "rule_group_70";
-      } "rule_69";
-    } "rule_68";
-  } "rule_67";
+        c then CdaPqObservationToFhirQuantityObservation(c, d) "rule_group_107";
+      } "rule_106";
+    } "rule_105";
+  } "rule_104";
+  Section -> Bundle then {
+    Section.entry first as a where observation.code.code=60621009 -> Bundle.entry as b then {
+      a.observation as c -> b.resource = create('Observation') as d then {
+        c then CdaRtoPqPqObservationToFhirRatioObservation(c, d) "rule_group_111";
+      } "rule_110";
+    } "rule_109";
+  } "rule_108";
+  Section -> Bundle then {
+    Section.entry first as a where observation.code.code='BLFONTANEL' -> Bundle.entry as b then {
+      a.observation as c -> b.resource = create('Observation') as d then {
+        c then CdaEntryRelationshipsObservationToFhirComponentsObservation(c, d) "rule_group_115";
+      } "rule_114";
+    } "rule_113";
+  } "rule_112";
 }

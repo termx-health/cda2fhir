@@ -1,13 +1,13 @@
-map "http://termx.health/fhir/StructureMap/CdaObservationToFhirObservation" = "CdaObservationToFhirObservation"
+map "http://termx.health/fhir/StructureMap/CdaPqObservationToFhirQuantityObservation" = "CdaPqObservationToFhirQuantityObservation"
 
 uses "http://hl7.org/cda/stds/core/StructureDefinition/Observation" alias ObservationCda as source
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as target
 
-imports "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity"
 imports "http://termx.health/fhir/StructureMap/CdaCdToFhirCodeableConcept"
 imports "http://termx.health/fhir/StructureMap/CdaIvlTsToFhirDateTime"
+imports "http://termx.health/fhir/StructureMap/CdaPqToFhirQuantity"
 
-group CdaObservationToFhirObservation(source ObservationCda : ObservationCda, target Observation : Observation) {
+group CdaPqObservationToFhirQuantityObservation(source ObservationCda : ObservationCda, target Observation : Observation) {
   ObservationCda ->
    Observation then {
     ObservationCda.code as a ->
