@@ -1,0 +1,16 @@
+map "http://termx.health/fhir/StructureMap/CdaAnaSectionToFhirBundle" = "CdaAnaSectionToFhirBundle"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/Section" alias Section as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://termx.health/fhir/StructureMap/CdaEntryRelationshipsProcedureToFhirBundle"
+
+group CdaAnaSectionToFhirBundle(source Section : Section, target Bundle : Bundle) {
+    Section -> Bundle then {
+      Section.entry as a -> Bundle then {
+        a.procedure as b -> Bundle then {
+          b then CdaEntryRelationshipsProcedureToFhirBundle(b, Bundle) "rule_group_639";
+        } "rule_638";
+      } "rule_637";
+    } "rule_636";
+  }

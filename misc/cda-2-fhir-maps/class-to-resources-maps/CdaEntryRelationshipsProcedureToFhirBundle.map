@@ -1,0 +1,83 @@
+map "http://termx.health/fhir/StructureMap/CdaEntryRelationshipsProcedureToFhirBundle" = "CdaEntryRelationshipsProcedureToFhirBundle"
+
+uses "http://hl7.org/cda/stds/core/StructureDefinition/Procedure" alias ProcedureCda as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://termx.health/fhir/StructureMap/CdaCdToFhirCodeableConcept"
+imports "http://termx.health/fhir/StructureMap/CdaIvlTsToFhirDateTime"
+imports "http://termx.health/fhir/StructureMap/CdaCeToFhirCodeableConcept"
+
+group CdaEntryRelationshipsProcedureToFhirBundle(source ProcedureCda : ProcedureCda, target Bundle : Bundle) {
+    ProcedureCda -> Bundle then {
+      ProcedureCda.entryRelationship as a -> Bundle then {
+        a then CdaProcedureEntryRelationshipToFhirBundle(a, Bundle) "rule_group_640";
+      } "rule_639";
+    } "rule_638";
+    ProcedureCda -> Bundle then {
+      ProcedureCda.code as a -> Bundle.entry as b then {
+        a -> b.resource = create('Procedure') as c then {
+          a -> c.code = create('CodeableConcept') as d then {
+            a then CdaCdToFhirCodeableConcept(a, d) "rule_group_645";
+          } "rule_644";
+        } "rule_643";
+      } "rule_642";
+    } "rule_641";
+  }
+
+group CdaProcedureEntryRelationshipToFhirBundle(source EntryRelationship : EntryRelationship, target Bundle : Bundle) {
+  EntryRelationship -> Bundle then {
+    EntryRelationship.observation as a -> Bundle.entry as b then {
+      a.specimen as c -> b.resource = create('Specimen') as d then {
+        c.specimenRole as e -> d.type = create('CodeableConcept') as f then {
+          e.specimenPlayingEntity as g -> f then {
+            g.code as h -> f then {
+              h then CdaCeToFhirCodeableConcept(h, f) "rule_group_741";
+            } "rule_740";
+          } "rule_739";
+        } "rule_738";
+      } "rule_737";
+    } "rule_736";
+  } "rule_735";
+  EntryRelationship -> Bundle then {
+    EntryRelationship.observation as a -> Bundle.entry as b then {
+      a.entryRelationship as c -> b.resource = create('Observation') as d then {
+        c.observation as e -> d.value = create('Quantity') as f then {
+          e.value as g -> f then {
+            a.specimen as h -> f then {
+              h.specimenRole as i -> f then {
+                i.specimenPlayingEntity as j -> f then {
+                  j.desc as k -> f then {
+                    k.xmlText as l -> f then {
+                      l then createQuantity(l, g, f) "rule_group_752";
+                    } "rule_751";
+                  } "rule_750";
+                } "rule_749";
+              } "rule_748";
+            } "rule_747";
+          } "rule_746";
+        } "rule_745";
+      } "rule_744";
+    } "rule_743";
+  } "rule_742";
+}
+
+group CdaObservationEdToDecimal(source ED : ED, target decimal : decimal) {
+  ED -> decimal then {
+    ED.xmlText as a -> evaluate(a, $this.replace(',', '.')) as evaluate376 then {
+      ED -> decimal.value = cast(evaluate376, 'decimal') as cast355 "rule_728";
+    } "rule_727";
+  } "rule_726";
+}
+    
+group createQuantity(source string : string, source ED : ED, target Quantity : Quantity) {
+  ED -> Quantity then {
+    ED -> Quantity.value = create('decimal') as a then {
+      ED then CdaObservationEdToDecimal(ED, a) "rule_group_731";
+    } "rule_730";
+  } "rule_729";
+  string -> Quantity then {
+    string -> Quantity.unit = create('string') as a then {
+      string.value as b -> a.value = b "dset_734";
+    } "rule_733";
+  } "rule_732";
+}

@@ -1,206 +1,24 @@
 map "http://termx.health/fhir/StructureMap/CdaOutpatientSummaryToFhirBundle" = "CdaOutpatientSummaryToFhirBundle"
 
-conceptmap "https://taltech.ee/fhir/ConceptMap/statusCodeToStatus" {
-  prefix s = "src"
-  prefix t = "tgt"
-
-  s:complete - t:final
-}
-
 uses "http://hl7.org/cda/stds/core/StructureDefinition/ClinicalDocument" alias ClinicalDocument as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
 
-imports "http://termx.health/fhir/StructureMap/RainerKasvamiseTeatisToFhir"
+imports "http://termx.health/fhir/StructureMap/CdaClinicalDocumentHeaderToFhirBundle"
+imports "http://termx.health/fhir/StructureMap/CdaAnaSectionToFhirBundle"
 
-group CdaAmbulatoorneEpikriisToFhirBundle(source ClinicalDocument : ClinicalDocument, target Bundle : Bundle) {
-  ClinicalDocument ->
-   Bundle then {
-    ClinicalDocument then ClinicalDocumentHeaderToBundle(ClinicalDocument, Bundle) "rule_group_945";
-  } "rule_944";
-  ClinicalDocument ->
-   Bundle then {
-    ClinicalDocument.component as a ->
-   Bundle then {
-      a.structuredBody as b ->
-   Bundle then {
-        b.component first as c where section.code.code='ANA' ->
-   Bundle then {
-          c.section as d ->
-   Bundle then {
-            d then CdaAnaSectionToFhirBundle(d, Bundle) "rule_group_951";
-          } "rule_950";
-        } "rule_949";
-      } "rule_948";
-    } "rule_947";
-  } "rule_946";
+group CdaOutpatientSummaryToFhirBundle(source ClinicalDocument : ClinicalDocument, target Bundle : Bundle) {
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument then ClinicalDocumentHeaderToBundle(ClinicalDocument, Bundle) "rule_group_690";
+  } "rule_689";
+  ClinicalDocument -> Bundle then {
+    ClinicalDocument.component as a -> Bundle then {
+      a.structuredBody as b -> Bundle then {
+        b.component first as c where section.code.code='ANA' -> Bundle then {
+          c.section as d -> Bundle then {
+            d then CdaAnaSectionToFhirBundle(d, Bundle) "rule_group_696";
+          } "rule_695";
+        } "rule_694";
+      } "rule_693";
+    } "rule_692";
+  } "rule_691";
 }
-
-group CdaAnaSectionToFhirBundle(source Section : Section, target Bundle : Bundle) {
-  Section ->
-   Bundle then {
-    Section.entry as a ->
-   Bundle then {
-      a.procedure as b ->
-   Bundle then {
-        b.entryRelationship as c ->
-   Bundle then {
-          c then CdaProcedureEntryRelationshipToFhirBundle(c, Bundle) "rule_group_956";
-        } "rule_955";
-      } "rule_954";
-    } "rule_953";
-  } "rule_952";
-  Section ->
-   Bundle then {
-    Section.entry as a ->
-   Bundle.entry as b then {
-      a.procedure as c ->
-   b.resource = create('Procedure') as d then {
-        c.code as e ->
-   d.code = create('CodeableConcept') as f then {
-          e then CdToCodeableConcept(e, f) "rule_group_961";
-        } "rule_960";
-      } "rule_959";
-    } "rule_958";
-  } "rule_957";
-}
-
-group CeToCodeableConcept(source CE : CE, target CodeableConcept : CodeableConcept) {
-  CE ->
-   CodeableConcept then {
-    CE ->
-   CodeableConcept.coding = create('Coding') as a then {
-      CE.codeSystem as b ->
-   a.system = b "dset_964";
-      CE.code as c ->
-   a.code = c "dset_965";
-      CE.displayName as d ->
-   a.display = d "dset_966";
-    } "rule_963";
-  } "rule_962";
-}
-
-group CdToCodeableConcept(source CD : CD, target CodeableConcept : CodeableConcept) {
-  CD ->
-   CodeableConcept then {
-    CD ->
-   CodeableConcept.coding = create('Coding') as a then {
-      CD.code as b ->
-   a.code = b "dset_969";
-      CD.codeSystem as c ->
-   a.system = c "dset_970";
-      CD.displayName as d ->
-   a.display = d "dset_971";
-    } "rule_968";
-  } "rule_967";
-}
-
-group IvlTsToDateTime(source IVLTS : IVL_TS, target dateTime : dateTime) {
-  IVLTS ->
-   dateTime then {
-    IVLTS.value as a ->
-   cast(a, 'string') as cast216 then {
-      IVLTS ->
-   dateTime.value = cast(cast216, 'dateTime') as cast217 "rule_974";
-    } "rule_973";
-  } "rule_972";
-}
-
-group CdaObservationToFhirObservation(source ObservationCda : ObservationCda, target Observation : Observation) {
-  ObservationCda ->
-   Observation then {
-    ObservationCda.code as a ->
-   Observation.code = create('CodeableConcept') as b then {
-      a then CdToCodeableConcept(a, b) "rule_group_977";
-    } "rule_976";
-  } "rule_975";
-  ObservationCda ->
-   Observation then {
-    ObservationCda.effectiveTime as a ->
-   Observation.effective = create('dateTime') as b then {
-      a then IvlTsToDateTime(a, b) "rule_group_980";
-    } "rule_979";
-  } "rule_978";
-}
-
-group CdaObservationEdToDecimal(source ED : ED, target decimal : decimal) {
-  ED ->
-   decimal then {
-    ED.xmlText as a ->
-   evaluate(a, $this.replace(',', '.')) as evaluate376 then {
-      ED ->
-   decimal.value = cast(evaluate376, 'decimal') as cast355 "rule_983";
-    } "rule_982";
-  } "rule_981";
-}
-
-group createQuantity(source string : string, source ED : ED, target Quantity : Quantity) {
-  ED ->
-   Quantity then {
-    ED ->
-   Quantity.value = create('decimal') as a then {
-      ED then CdaObservationEdToDecimal(ED, a) "rule_group_986";
-    } "rule_985";
-  } "rule_984";
-  string ->
-   Quantity then {
-    string ->
-   Quantity.unit = create('string') as a then {
-      string.value as b ->
-   a.value = b "dset_989";
-    } "rule_988";
-  } "rule_987";
-}
-
-group CdaProcedureEntryRelationshipToFhirBundle(source EntryRelationship : EntryRelationship, target Bundle : Bundle) {
-  EntryRelationship ->
-   Bundle then {
-    EntryRelationship.observation as a ->
-   Bundle.entry as b then {
-      a.specimen as c ->
-   b.resource = create('Specimen') as d then {
-        c.specimenRole as e ->
-   d.type = create('CodeableConcept') as f then {
-          e.specimenPlayingEntity as g ->
-   f then {
-            g.code as h ->
-   f then {
-              h then CeToCodeableConcept(h, f) "rule_group_996";
-            } "rule_995";
-          } "rule_994";
-        } "rule_993";
-      } "rule_992";
-    } "rule_991";
-  } "rule_990";
-  EntryRelationship ->
-   Bundle then {
-    EntryRelationship.observation as a ->
-   Bundle.entry as b then {
-      a.entryRelationship as c ->
-   b.resource = create('Observation') as d then {
-        c.observation as e ->
-   d.value = create('Quantity') as f then {
-          e.value as g ->
-   f then {
-            a.specimen as h ->
-   f then {
-              h.specimenRole as i ->
-   f then {
-                i.specimenPlayingEntity as j ->
-   f then {
-                  j.desc as k ->
-   f then {
-                    k.xmlText as l ->
-   f then {
-                      l then createQuantity(l, g, f) "rule_group_1007";
-                    } "rule_1006";
-                  } "rule_1005";
-                } "rule_1004";
-              } "rule_1003";
-            } "rule_1002";
-          } "rule_1001";
-        } "rule_1000";
-      } "rule_999";
-    } "rule_998";
-  } "rule_997";
-}
-
