@@ -26,3 +26,13 @@ The _get-structure-map.py_ Python script:
 - Process results. 
 - For every transformation in data array queries detailed information  https://termx.kodality.dev/api/transformation-definitions/$id
 - Save three the files: 1) mapping; 2) related resources; and 3) example.
+
+### Upload used CDA StructureMaps to TermX
+
+~~~
+python post-structure-definition.py
+~~~ 
+The _python post-structure-definition.py_ Python script:
+- Find every json StructureDefinition in the _/misc/used-cda-models_ folder. 
+- Post each StructureDefinition to from https://termx.taltech.ee/api/transformation-definitions.
+- For every element, a StructureDefinition will be then visible at https://termx.taltech.ee/modeler/transformation-definitions
