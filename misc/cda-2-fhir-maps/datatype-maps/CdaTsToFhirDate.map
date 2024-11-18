@@ -3,11 +3,11 @@ map "http://termx.health/fhir/StructureMap/CdaTsToFhirDate" = "CdaTsToFhirDate"
 uses "http://hl7.org/cda/stds/core/StructureDefinition/TS" alias TS as source
 uses "http://hl7.org/fhir/StructureDefinition/date" alias date as target
 
-group CdaTsToFhirDate(source TS : TS, target date : date) {
-  TS ->
-   date then {
-    TS.value as a ->
-   date.value = a "set_value";
+group CdaTsToFhirDate(source src : TS, target tgt : date) {
+  src ->
+  tgt then {
+    src.value as a ->
+    tgt.value = a "set_value";
   } "ts_to_date";
 }
 

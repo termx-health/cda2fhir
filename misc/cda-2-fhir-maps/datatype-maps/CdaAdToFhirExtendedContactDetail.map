@@ -26,11 +26,11 @@ group CdaAdToFhirExtendedContactDetail(source AD : AD, target ExtendedContactDet
    b then {
               addressCity.xmlText as cityXmlText ->
    b.city = cityXmlText "city";
-              AD.county as addressCounty ->
+              AD.country as addresscountry ->
    b then {
-                addressCounty.xmlText as countyXmlText ->
-   b.line = countyXmlText "county_to_address_line";
-              } "cda_county_to_fhir";
+                addresscountry.xmlText as countryXmlText ->
+   b.country = countryXmlText "country_to_address_line";
+              } "cda_country_to_fhir";
             } "cda_city_to_fhir";
           } "cda_postal_code_to_fhir";
         } "cda_house_number_to_fhir";
