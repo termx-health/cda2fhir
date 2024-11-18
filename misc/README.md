@@ -36,3 +36,4 @@ The _python post-structure-definition.py_ Python script:
 - Find every json StructureDefinition in the _/misc/used-cda-models_ folder. 
 - Post each StructureDefinition to from https://termx.taltech.ee/api/transformation-definitions.
 - For every element, a StructureDefinition will be then visible at https://termx.taltech.ee/modeler/transformation-definitions
+- If your TermX instance has authentication and authorization configured, the script must be amended to handle that
