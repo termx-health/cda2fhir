@@ -67,7 +67,7 @@ def get_data_and_save_files(api_url):
         print(f"Data is not a list: {data}")
 
 # URL of the API
-api_url = "https://termx.kodality.dev/api/transformation-definitions"
+api_url = "https://termx.taltech.ee/api/transformation-definitions"
 
 # Call the function
 get_data_and_save_files(api_url)
