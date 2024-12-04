@@ -1,0 +1,197 @@
+{
+    "resourceType": "Bundle",
+    "meta": {
+      "security": [
+        {
+          "system": "2.16.840.1.113883.5.25",
+          "code": "N",
+          "display": "Normaalne"
+        }
+      ]
+    },
+    "entry": [
+      {
+        "resource": {
+          "resourceType": "Composition",
+          "status": "final",
+          "type": {
+            "coding": [
+              {
+                "system": "1.3.6.1.4.1.28284.6.2.1.3.1",
+                "code": "2",
+                "display": "Ambulatoorne epikriis"
+              }
+            ]
+          },
+          "date": "2013-10-21T15:17:44"
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Organization",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.4",
+              "value": "90006590"
+            }
+          ],
+          "name": "SA Tallinna Lastehaigla"
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Practitioner",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.6.2.4.9",
+              "value": "D02122"
+            }
+          ],
+          "name": [
+            {
+              "family": "SHOR",
+              "given": [
+                "RIINA"
+              ]
+            }
+          ],
+          "qualification": [
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "1.3.6.1.4.1.28284.6.2.2.15.1",
+                    "code": "DOCTOR",
+                    "display": "arst"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Organization",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.4",
+              "value": "90006590"
+            }
+          ],
+          "name": "SA Tallinna Lastehaigla",
+          "contact": [
+            {
+              "telecom": [
+                {
+                  "value": "tel:6977 111"
+                },
+                {
+                  "value": "fax:6977 143"
+                }
+              ]
+            },
+            {
+              "address": {
+                "line": [
+                  "Tervise 28"
+                ],
+                "city": "TALLINN",
+                "postalCode": "13419",
+                "country": "EST"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Patient",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.6.2.2.1",
+              "value": "50007030845"
+            }
+          ],
+          "name": [
+            {
+              "family": "RANDMAA",
+              "given": [
+                "RAINER"
+              ]
+            }
+          ],
+          "birthDate": "2000-07-03",
+          "contact": [
+            {
+              "address": {
+                "line": [
+                  "KRUUSA 6"
+                ],
+                "city": "TALLINN",
+                "country": "EST"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Specimen",
+          "type": {
+            "coding": [
+              {
+                "code": "2131",
+                "display": "FT4"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "valueQuantity": {
+            "value": 12.2,
+            "unit": "pmol/l"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Specimen",
+          "type": {
+            "coding": [
+              {
+                "code": "2127",
+                "display": "TSH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "valueQuantity": {
+            "value": 1.5,
+            "unit": "mU/l"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Procedure",
+          "code": {
+            "coding": [
+              {
+                "system": "1.3.6.1.4.1.28284.1.9.2.16",
+                "code": "2127",
+                "display": "Immuunmeetodi uuringud"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }

@@ -1,0 +1,281 @@
+{
+    "resourceType": "Bundle",
+    "meta": {
+      "security": [
+        {
+          "system": "2.16.840.1.113883.5.25",
+          "code": "V",
+          "display": "suletud"
+        }
+      ]
+    },
+    "entry": [
+      {
+        "resource": {
+          "resourceType": "Composition",
+          "status": "final",
+          "type": {
+            "coding": [
+              {
+                "system": "1.3.6.1.4.1.28284.6.2.1.3.1",
+                "code": "12",
+                "display": "Kasvamise teatis"
+              }
+            ]
+          },
+          "date": "1989-05-12T11:47:23"
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Organization",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.4",
+              "value": "90006399"
+            }
+          ],
+          "name": "SA Põhja-Eesti Regionaalhaigla"
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Practitioner",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.6.2.4.9",
+              "value": "N08875"
+            }
+          ],
+          "name": [
+            {
+              "family": "Kass",
+              "given": [
+                "Mari"
+              ]
+            }
+          ],
+          "qualification": [
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "1.3.6.1.4.1.28284.6.2.2.15.1",
+                    "code": "NURSE",
+                    "display": "õde"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Organization",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.4",
+              "value": "90006399"
+            }
+          ],
+          "name": "SA Põhja-Eesti Regionaalhaigla",
+          "contact": [
+            {
+              "telecom": [
+                {
+                  "value": "tel:+3726171300"
+                },
+                {
+                  "value": "mailto:info@regionaalhaigla.ee"
+                },
+                {
+                  "value": "fax:+3726171300"
+                }
+              ]
+            },
+            {
+              "address": {
+                "line": [
+                  "J.Sütiste 19"
+                ],
+                "city": "Tallinn",
+                "postalCode": "50700"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Patient",
+          "identifier": [
+            {
+              "system": "1.3.6.1.4.1.28284.6.2.2.1",
+              "value": "48905059995"
+            }
+          ],
+          "name": [
+            {
+              "family": "Cuusk",
+              "given": [
+                "Ly"
+              ]
+            }
+          ],
+          "birthDate": "1989-05-05"
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "1.3.6.1.4.1.28284.6.2.2.26.1",
+                "code": "AGE",
+                "display": "Vanus"
+              }
+            ]
+          },
+          "component": [
+            {
+              "valueQuantity": {
+                "value": 14,
+                "unit": "d"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "2.16.840.1.113883.6.96",
+                "code": "363809009",
+                "display": "Kaal"
+              }
+            ]
+          },
+          "effectiveDateTime": "1989-06-05",
+          "valueQuantity": {
+            "value": 4500,
+            "unit": "g"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "2.16.840.1.113883.6.96",
+                "code": "50373000",
+                "display": "Pikkus"
+              }
+            ]
+          },
+          "effectiveDateTime": "1989-06-05",
+          "valueQuantity": {
+            "value": 51,
+            "unit": "cm"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "1.3.6.1.4.1.28284.6.2.2.26.1",
+                "code": "HPM",
+                "display": "Peaümbermõõt"
+              }
+            ]
+          },
+          "effectiveDateTime": "1989-06-05",
+          "valueQuantity": {
+            "value": 35,
+            "unit": "cm"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "2.16.840.1.113883.6.96",
+                "code": "60621009",
+                "display": "Kehamassi indeks"
+              }
+            ]
+          },
+          "effectiveDateTime": "1989-06-05",
+          "valueRatio": {
+            "numerator": {
+              "value": 0.45,
+              "unit": "kg"
+            },
+            "denominator": {
+              "value": 0.2601,
+              "unit": "m2"
+            }
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "1.3.6.1.4.1.28284.6.2.2.26.1",
+                "code": "BLFONTANEL",
+                "display": "Suur lõge"
+              }
+            ]
+          },
+          "effectiveDateTime": "1989-06-05",
+          "component": [
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "1.3.6.1.4.1.28284.6.2.2.26.1",
+                    "code": "BFONTANEL",
+                    "display": "Lõge laius"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 4,
+                "unit": "cm"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "1.3.6.1.4.1.28284.6.2.2.26.1",
+                    "code": "LFONTANEL",
+                    "display": "Lõge pikkus"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 3,
+                "unit": "cm"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }

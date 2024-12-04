@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://pub.e-tervis.ee/standards2/Standards/8.0/XSL/main.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="urn:hl7-EE-DL-Ext:v1" xsi:schemaLocation="
+	urn:hl7-org:v3 http://pub.e-tervis.ee/standards2/Schema/V3/HL7-ORG-V3-2005-NORMATIVE-EE-DL-Ext-V1/infrastructure/cda/CDA_EE01.xsd
+	urn:hl7-EE-DL-Ext:v1 http://pub.e-tervis.ee/standards2/Schema/V3/HL7-ORG-V3-2006-NORMATIVE-EE-DL-Ext-V1/processable/multicacheschemas/POCD_MT000040_EE01_Extension.xsd">
+	<!-- Standard: ST_Tervisekontrolli kasvamise teatis, vers 3-->
+	<!-- dokumendi tüüp (tehniline) -->
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+	<!-- Standardi versiooni number: Lapse tervisekontrolli kasvamise teatis, versioon nr 3-->
+	<templateId root="1.3.6.1.4.1.28284.6.1.1" extension="1.3.6.1.4.1.28284.6.1.1.58.3"/>
+	<!-- dokumendi number -->
+	<id root="DokumendiNumberOID" extension="002"/>
+	<!-- dokumendi tüüp: lapse tervisekontroll  -->
+	<code code="12" codeSystem="1.3.6.1.4.1.28284.6.2.1.3.1" codeSystemName="Dokumendi tüüp" displayName="Kasvamise teatis"/>
+	<!-- dokumendi nimetus -->
+	<title>Kasvamise teatis</title>
+	<!-- dokumendi koostamise aeg-->
+	<effectiveTime value="19890512114723"/>
+	<!--Konfidentsiaalsus algus-->
+	<!-- konfidentsiaalsuse tunnus patsiendile-->
+	<confidentialityCode code="V" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Konfidentsiaalsus" displayName="suletud">
+		<!--konfidentsiaalsuse tunnus eestkostjale/usaldusisikule-->
+		<translation code="R" codeSystem="1.3.6.1.4.1.28284.6.2.2.37.1" codeSystemName="Konfidentsiaalsus eestkostjale" displayName="piiratud" />
+		<!--konfidentsiaalsuse tunnus arstile-->
+		<translation code="N" codeSystem="1.3.6.1.4.1.28284.6.2.2.39.1" codeSystemName="Konfidentsiaalsus arstile" displayName="avatud" />
+		</confidentialityCode>
+	<!--Konfidentsiaalsus lõpp-->
+	<!-- dokumendi keel -->
+	<languageCode code="EST"/>
+	<!-- -dokumendi versiooni number -->
+	<versionNumber value="1"/>
+	<!-- PATSIENDI ANDMED ALGUS (LAPS)-->
+	<recordTarget typeCode="RCT">
+		<!-- dokumendiga seotud patsiendi roll (vastsündinu ehk patsient) -->
+		<realmCode code="PAT"/>
+		<patientRole classCode="PAT">
+			<!-- vastsündinu isikukood või tundmatu isiku kood -->
+			<id root="1.3.6.1.4.1.28284.6.2.2.1" extension="48905059995"/>
+			<patient classCode="PSN" determinerCode="INSTANCE">
+				<!-- patsiendi nimi algus -->
+				<name>
+					<!-- eesnimi -->
+					<given>Ly</given>
+					<!-- perenimi -->
+					<family>Cuusk</family>
+				</name>
+				<!-- patsiendi nimi lõpp-->
+				<!-- sugu-->
+				<administrativeGenderCode code="N" codeSystem="1.3.6.1.4.1.28284.6.2.3.16.1" codeSystemName="Sugu" displayName="naine"/>
+				<!-- sünniaeg-->
+				<birthTime value="19890505"/>
+				<!-- MUU OSALEJA (eestkostja / lapsevanem) 1 ALGUS -->
+				<guardian classCode="GUARD">
+					<!-- isikukood-->
+					<!-- OID sõltub, kas tegu on Eesti isikukoodi omava isiku või välisriigi isikuga-->
+					<id root="1.3.6.1.4.1.28284.6.2.2.1" extension="34908027790"/>
+					<!-- muu osaleja liik -->
+					<code code="FATHER" codeSystem="1.3.6.1.4.1.28284.6.2.2.7.1" codeSystemName="Osaluse tüüp" displayName="Isa"/>
+					<!-- muu osaleja nime algus-->
+					<guardianPerson>
+						<name>
+							<!--muu osaleja eesnimi-->
+							<given>Carl</given>
+							<!--muu osaleja perekonnanimi-->
+							<family>Cuusk</family>
+						</name>
+					</guardianPerson>
+					<!-- muu osaleja nime lõpp-->
+				</guardian>
+				<!-- MUU OSALEJA 1 LÕPP-->
+				<!-- MUU OSALEJA (eestkostja / lapsevanem)  2 ALGUS -->
+				<guardian classCode="GUARD">
+					<!-- isikukood-->
+					<!-- OID sõltub, kas tegu on Eesti isikukoodi omava isiku või välisriigi isikuga-->
+					<id root="1.3.6.1.4.1.28284.6.2.2.1" extension="45002280288"/>
+					<!-- muu osaleja liik -->
+					<code code="MOTHER" codeSystem="1.3.6.1.4.1.28284.6.2.2.7.1" codeSystemName="Osaluse tüüp" displayName="Ema"/>
+					<!-- muu osaleja nime algus-->
+					<guardianPerson>
+						<name>
+							<!--muu osaleja eesnimi-->
+							<given>Katy</given>
+							<!--muu osaleja perekonnanimi-->
+							<family>Cuusk</family>
+						</name>
+					</guardianPerson>
+					<!-- muu osaleja nime lõpp-->
+				</guardian>
+				<!-- MUU OSALEJA 2 LÕPP-->
+			</patient>
+		</patientRole>
+	</recordTarget>
+	<!-- PATSIENDI ANDMED LÕPP (LAPS)-->
+	<!-- DOKUMENDI KOOSTAJA ANDMED ALGUS-->
+	<!-- MALL: Tervishoiutöötaja-->
+	<author typeCode="AUT">
+		<!-- dokumendi koostamise aeg-->
+		<time value="19890512114723"/>
+		<assignedAuthor classCode="ASSIGNED">
+			<!-- dokumendi koostaja tervishoiutöötaja kood või isiku isikukood-->
+			<id root="1.3.6.1.4.1.28284.6.2.4.9" extension="N08875"/>
+			<!-- NB! CDA skeemi laiendus COCT_MT090000UV01.LicensedEntity -->
+			<ext:asLicencedEntity ext:HL7-ClassName="LIC" ext:HL7-Domain="PRPM_RM000000" ext:realmCode="EE">
+				<!-- eriala kood ja nimetus-->
+				<ext:id root="1.3.6.1.4.1.28284.6.2.1.4.1" extension="E12" assigningAuthorityName="üldõde"/>
+			</ext:asLicencedEntity>
+			<!-- laienduse lõpp-->
+			<!-- tervishoiutöötaja tüüp (tehniline kood)-->
+			<code code="NURSE" codeSystem="1.3.6.1.4.1.28284.6.2.2.15.1" codeSystemName="Tervishoiutöötajate tüüp" displayName="õde"/>
+			<!-- tervishoiutöötaja nime algus-->
+			<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+				<name>
+					<!-- tervishoiutöötaja eesnimi -->
+					<given>Mari</given>
+					<!-- tervishoiutöötaja perekonnanimi-->
+					<family>Kass</family>
+				</name>
+			</assignedPerson>
+			<!-- tervishoiutöötaja nime lõpp-->
+			<!-- MALL: Tervishoiuasutus-->
+			<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+				<!--tervishoiuteenuse osutaja registrikood või asutuse registrikood -->
+				<id root="1.3.6.1.4.1.28284.4" extension="90006399"/>
+				<!-- TTO nimetus-->
+				<name>SA Põhja-Eesti Regionaalhaigla</name>
+				<!-- asutuse kontaktandmed algus -->
+				<telecom value="tel:+3726171300"/>
+				<telecom value="mailto:info@regionaalhaigla.ee"/>
+				<telecom value="fax:+3726171300"/>
+				<!-- asutuse kontaktandmed lõpp -->
+				<!-- asutuse aadress algus -->
+				<addr use="PHYS">
+					<county>Harju</county>
+					<city>Tallinn</city>
+					<streetAddressLine>J.Sütiste 19</streetAddressLine>
+					<streetName>J.Sütiste</streetName>
+					<houseNumber>19</houseNumber>
+					<!--EHAKi kood-->
+					<unitID>0784</unitID>
+					<postalCode>50700</postalCode>
+				</addr>
+				<!-- asutuse aadress lõpp-->
+			</representedOrganization>
+		</assignedAuthor>
+	</author>
+	<!-- DOKUMENDI KOOSTAJA ANDMED LÕPP-->
+	<!-- VASTUTAJA ANDMED -->
+	<custodian typeCode="CST">
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<!-- vastutaja asutuse (TTO) registrikood-->
+				<id root="1.3.6.1.4.1.28284.4" extension="90006399"/>
+				<!-- vastutaja asutuse nimetus -->
+				<name>SA Põhja-Eesti Regionaalhaigla</name>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<!-- VASTUTAJA ANDMED LÕPP-->
+	<!-- SEOTUD DOKUMENT ALGUS
+		  RPLC - asendatakse dokument uue versiooniga
+		  <relatedDocument typeCode="RPLC">
+			  <parentDocument>
+				  seotud dokumendi number
+				  <id root="DokumendiNumberOID" extension="002"/>
+				  seotud dokumendi versioon
+				  <versionNumber value="1"/>
+			  </parentDocument>
+		  </relatedDocument>
+		  SEOTUD DOKUMENT LÕPP -->
+	<!-- KOONDHAIGUSJUHT ALGUS -->
+	<componentOf>
+		<encompassingEncounter>
+			<!-- haigusjuhtumi tüüp : tervisekontroll-->
+			<code code="CONTR" codeSystem="1.3.6.1.4.1.28284.6.2.1.5.1" codeSystemName="Haigusjuhtumi tüüp" displayName="Tervisekontroll"/>
+			<!-- tervisekontrolli kuupäev või kuupäevade vahemik (low/high)-->
+			<effectiveTime value="19890605"/>
+			<!-- RAVIARSTI (ÕE) ALGUS-->
+			<encounterParticipant typeCode="ATND">
+				<assignedEntity>
+					<!-- tervishoiutöötaja kood-->
+					<id root="1.3.6.1.4.1.28284.6.2.4.9" extension="D06176"/>
+					<!-- tervishoiutöötaja tüüp (tehniline)-->
+					<code code="DOCTOR" codeSystem="1.3.6.1.4.1.28284.6.2.2.15.1" codeSystemName="Tervishoiutöötaja tüüp" displayName="arst"/>
+					<!-- NB! CDA skeemi laiendus COCT_MT090000UV01.LicensedEntity -->
+					<ext:asLicencedEntity ext:HL7-ClassName="LIC" ext:HL7-Domain="PRPM_RM000000" ext:realmCode="EE">
+						<!-- suunaja eriala kood ja nimetus-->
+						<ext:id root="1.3.6.1.4.1.28284.6.2.1.4.1" extension="E10" assigningAuthorityName="peremeditsiin"/>
+					</ext:asLicencedEntity>
+					<!-- laienduse lõpp-->
+					<!-- raviarsti kontaktandmed algus -->
+					<telecom value="tel:+3726171300"/>
+					<telecom value="mailto:kristi.kodu@regionaalhaigla.ee"/>
+					<telecom value="fax:+3726171300"/>
+					<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+						<name>
+							<!-- tervishoiutöötaja eesnimi -->
+							<given>Tatjana</given>
+							<!-- tervishoiutöötaja perekonnanimi-->
+							<family>Katjuk</family>
+						</name>
+					</assignedPerson>
+				</assignedEntity>
+			</encounterParticipant>
+			<!-- RAVIARSTI (ÕE) LÕPP-->
+		</encompassingEncounter>
+	</componentOf>
+	<!-- KOONDHAIGUSJUHT LÕPP-->
+	<!-- SISUOSA ALGUS : kasvamine-->
+	<component typeCode="COMP">
+		<structuredBody classCode="DOCBODY" moodCode="EVN">
+				<!--VANUS algus-->
+			<component>
+				<section>
+					<code code="AGE" codeSystem="1.3.6.1.4.1.28284.6.2.2.11.2" codeSystemName="Sektsiooni kodeering" displayName="Vanus"/>
+					<title>
+						Vanus
+					</title>
+					<!-- tekstiline kirjeldus algus-->
+					<text>1k 14p</text>
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<code code="AGE" codeSystem="1.3.6.1.4.1.28284.6.2.2.26.1" codeSystemName="Läbivaatuse liik" displayName="Vanus"/>
+							<!--<value xsi:type="PQ" unit="y" value="2"/>-->
+							<value xsi:type="PQ" unit="mo" value="1"/>
+							<value xsi:type="PQ" unit="d" value="14"/>
+						</observation>
+					</entry>	
+				</section>
+			</component>
+			<!--VANUS lõpp-->
+			<!-- ANAMNEES ALGUS-->
+			<component typeCode="COMP">
+				<section classCode="DOCSECT" moodCode="EVN">
+					<!-- mis tüüpi sektsiooniga on tegu "ANAM"-->
+					<code code="ANAM" codeSystem="1.3.6.1.4.1.28284.6.2.2.11.2" codeSystemName="Sektsiooni kodeering" displayName="Anamnees"/>
+					<!-- sektsiooni pealkiri -->
+					<title>
+						Anamnees
+					</title>
+					<!-- tekstiline kirjeldus algus-->
+					<text>
+					<!-- struktureerimata kirjeldus: anamnees ja kaebused
+						<paragraph ID="ANAMSUM">
+							<content>anamneesi kirjeldus </content>
+						</paragraph>-->
+						<!-- struktureeritud-->
+						<list ID="ANMALIST">
+							<item ID="ANA">
+								<caption>Anamnees</caption>
+								<content>Anamneesi tekst</content>
+							</item>
+							<!-- kaebused-->
+							<item ID="PROB">
+								<caption>Kaebused</caption>
+								<content>Kabuste kirjeldus</content>
+							</item>
+							<!-- sotsiaalsed olud-->
+							<item ID="SOC">
+								<caption>Sotsiaalsed olud</caption>
+								<content>Sotsiaalsete olude kirjeldus</content>
+							</item>
+							<!-- terviseriskid-->
+							<item ID="RISK">
+								<caption>Terviseriskid</caption>
+								<content>Terviseriskide kirjeldus</content>
+							</item>
+						</list>
+					</text>
+					<!-- tekstiline kirjeldus lõpp-->
+					<!-- viide vanusegrupile, kuhu anamnees kuulub. Sel juhul läheb anamnees patsiendikaardile-->
+					<entry>
+						<encounter classCode="ENC" moodCode="EVN">
+							<!-- haigusjuhtumi tüüp : tervisekontroll-->
+							<code code="CONTR" codeSystem="1.3.6.1.4.1.28284.6.2.1.5.1" codeSystemName="Haigusjuhtumi tüüp" displayName="Tervisekontroll">
+								<!--täpsustab arengu vanusegruppi-->
+								<qualifier>
+									<value code="1k" codeSystem="1.3.6.1.4.1.28284.6.2.1.36.1" codeSystemName="Anamneesi vanusegrupp" displayName="1 kuu"/>
+								</qualifier>
+							</code>
+							<!-- tervisekontrolli kuunepäev või kuunepäevade vahemik (low/high)-->
+							<effectiveTime value="19890605"/>
+						</encounter>
+					</entry>
+				</section>
+			</component>
+			<!-- ANAMNEES, KULG LÕPP-->
+			<!-- KASVAMINE ALGUS -->
+			<component typeCode="COMP">
+				<section classCode="DOCSECT" moodCode="EVN">
+					<!-- mis tüüpi sektsiooniga on tegu "ANAM"-->
+					<code code="GROWTH" codeSystem="1.3.6.1.4.1.28284.6.2.2.11.2" codeSystemName="Sektsiooni kodeering" displayName="Kasvamine"/>
+					<!-- sektsiooni pealkiri -->
+					<title>Kasvamine</title>
+					<!-- tekstiline kirjeldus algus-->
+					<text>
+						<paragraph>
+							<content>
+							Pikkus: 51 cm 
+							Kaal: 4500 g
+							Peaümbermõõt: 35 cm 
+							Suure lõgeme mõõdud: 4x3 cm
+							KMI: 18/1.44 
+						</content>
+						</paragraph>
+					</text>
+					<!-- tekstiline kirjeldus lõpp-->
+					<!-- kaal algus-->
+					<entry typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- eristab mis liiki kasvu andmetega on tegemist (kaal)-->
+							<code code="363809009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Kaal">
+								<!--täpsustab arengu vanusegruppi-->
+								<qualifier>
+									<value code="1k" codeSystem="1.3.6.1.4.1.28284.6.2.1.45.1" codeSystemName="Kasvamise vanusegrupp" displayName="1 kuu"/>
+								</qualifier>
+							</code>
+							<!-- mõõtmise aeg-->
+							<effectiveTime value="19890605"/>
+							<!-- sünnikaal (grammides)-->
+							<value xsi:type="PQ" value="4500" unit="g"/>
+						</observation>
+					</entry>
+					<!-- kaal lõpp-->
+					<!-- pikkus (cm) algus-->
+					<entry typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- eristab mis liiki kasvu andmetega on tegemist (pikkus)-->
+							<code code="50373000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Pikkus">
+								<!--täpsustab arengu vanusegruppi-->
+								<qualifier>
+									<value code="1k" codeSystem="1.3.6.1.4.1.28284.6.2.1.45.1" codeSystemName="Kasvamise vanusegrupp" displayName="1 kuu"/>
+								</qualifier>
+							</code>
+							<!-- mõõtmise aeg-->
+							<effectiveTime value="19890605"/>
+							<!-- pikkus (cm) -->
+							<value xsi:type="PQ" value="51" unit="cm"/>
+						</observation>
+					</entry>
+					<!-- pikkus (cm) lõpp-->
+					<!-- peaümbermõõt (cm) algus-->
+					<entry typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- eristab mis liiki kasvu andmetega on tegemist (peaümbermõõt)-->
+							<code code="HPM" codeSystem="1.3.6.1.4.1.28284.6.2.2.26.1" codeSystemName="Läbivaatuse liik" displayName="Peaümbermõõt">
+								<!--täpsustab arengu vanusegruppi-->
+								<qualifier>
+									<value code="1k" codeSystem="1.3.6.1.4.1.28284.6.2.1.45.1" codeSystemName="Kasvamise vanusegrupp" displayName="1 kuu"/>
+								</qualifier>
+							</code>
+							<!-- mõõtmise aeg-->
+							<effectiveTime value="19890605"/>
+							<!-- peaümbermõõt (cm) -->
+							<value xsi:type="PQ" value="35" unit="cm"/>
+						</observation>
+					</entry>
+					<!-- peaümbermõõt(cm) lõpp-->
+					<!-- suure lõge mõõdud-->
+					<entry typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- eristab mis liiki kasvu andmetega on tegemist (hinnang kasvamisele)-->
+							<code code="BLFONTANEL" codeSystem="1.3.6.1.4.1.28284.6.2.2.26.1" codeSystemName="Läbivaatuse liik" displayName="Suur lõge">
+								<!--täpsustab arengu vanusegruppi-->
+								<qualifier>
+									<value code="1k" codeSystem="1.3.6.1.4.1.28284.6.2.1.45.1" codeSystemName="Kasvamise vanusegrupp" displayName="1 kuu"/>
+								</qualifier>
+							</code>
+							<!-- mõõtmise aeg-->
+							<effectiveTime value="19890605"/>
+							<entryRelationship typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<code code="BFONTANEL" codeSystem="1.3.6.1.4.1.28284.6.2.2.26.1" codeSystemName="Läbivaatuse liik" displayName="Lõge laius"/>
+									<value xsi:type="PQ" value="4" unit="cm"/>
+								</observation>
+							</entryRelationship>
+							<entryRelationship typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<code code="LFONTANEL" codeSystem="1.3.6.1.4.1.28284.6.2.2.26.1" codeSystemName="Läbivaatuse liik" displayName="Lõge pikkus"/>
+									<value xsi:type="PQ" value="3" unit="cm"/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entry>
+					<!-- suure lõge mõõdud lõpp-->
+					<!-- KMI algus-->
+					<entry typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- eristab mis liiki kasvu andmetega on tegemist (KMI)-->
+							<code code="60621009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Kehamassi indeks">
+								<!--täpsustab arengu vanusegruppi-->
+								<qualifier>
+									<value code="1k" codeSystem="1.3.6.1.4.1.28284.6.2.1.45.1" codeSystemName="Kasvamise vanusegrupp" displayName="1 kuu"/>
+								</qualifier>
+							</code>
+							<!--  aeg-->
+							<effectiveTime value="19890605"/>
+							<!-- KMI (arvutuslik)-->
+							<value xsi:type="RTO_PQ_PQ">
+                            	<numerator value="0.45" unit="kg"/>
+                            	<denominator value="0.2601" unit="m2"/>
+                        	</value>
+						</observation>
+					</entry>
+					<!-- KMI lõpp-->
+				</section>
+			</component>
+			<!-- KASVAMINE LÕPP -->
+			<!-- MÄRKUSED ALGUS-->
+			<component typeCode="COMP">
+				<section classCode="DOCSECT" moodCode="EVN">
+					<!-- mis tüüpi sektsiooniga on tegu "SPEC" -->
+					<code code="REM" codeSystem="1.3.6.1.4.1.28284.6.2.2.11.2" codeSystemName="Sektsiooni kodeering" displayName="Märkused"/>
+					<!-- sektsiooni pealkiri -->
+					<title>Märkused</title>
+					<!-- tekstiline kirjeldus algus -->
+					<text>
+						<paragraph ID="REM">
+							<!-- vabatekstiväli -->
+							<content>Märkused tervisekontrolli kohta vabas vormis</content>
+						</paragraph>
+					</text>
+					<!-- tekstilise kirjelduse lõpp -->
+				</section>
+			</component>
+			<!-- MÄRKUSED LÕPP-->
+		</structuredBody>
+	</component>
+	<!-- SISUOSA LÕPP-->
+</ClinicalDocument>

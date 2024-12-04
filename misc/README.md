@@ -5,6 +5,7 @@ Explanaition of the content in the folder.
 
 |- CDA-2.0-classes \             # The CDA resources from https://registry.fhir.org/package/hl7.cda.uv.core|2.0.0-sd
 |- used-cda-models \             # The CDA classes used in the TermX (limited set downloaded with _get-structure-definition.py_)
+|- examples \                     # Example input CDA documents and example output FHIR documents
 
 ### Download StructureDefinitions from TermX
 
@@ -37,3 +38,12 @@ The _python post-structure-definition.py_ Python script:
 - Post each StructureDefinition to from https://termx.taltech.ee/api/transformation-definitions.
 - For every element, a StructureDefinition will be then visible at https://termx.taltech.ee/modeler/transformation-definitions
 - If your TermX instance has authentication and authorization configured, the script must be amended to handle that
+
+### Transform CDA documents to FHIR bundles using the TermX transformation endpoint
+
+~~~
+http requests.http
+~~~ 
+The _requests.http_ HTTP file:
+- Can be used with an HTTP client extention to transform CDA documents to FHIR bundles
+- Uses the transformation constructed using TermX, accessed through a transform endpoint

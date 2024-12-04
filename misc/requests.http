@@ -1,0 +1,18 @@
+# TermX server URL
+@host = https://termx.kodality.dev/api/fhir
+
+### Transform Notice of Growth
+POST {{host}}/StructureMap/RainerKasvamiseTeatisToFhir2/$transform
+Accept: application/fhir+json;fhirVersion=5.0
+Content-Type: application/fhir+xml;fhirVersion=5.0
+
+< ./examples/cda-documents/notice-of-growth.xml
+
+### Transform Outpatient Summary
+POST {{host}}/StructureMap/RainerAmbulatoorneEpikriisToFhir/$transform
+Accept: application/fhir+json;fhirVersion=5.0
+Content-Type: application/fhir+xml;fhirVersion=5.0
+
+< ./examples/cda-documents/outpatient-case-summary.xml
+
+
